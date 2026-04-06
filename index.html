@@ -5,28 +5,34 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Job Search Bot — Ingénieure Matériaux Suisse</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #0d0f14;
-    --surface: #141720;
-    --surface2: #1c2030;
-    --border: #252a3a;
-    --accent: #5af2b0;
-    --accent2: #4ecdc4;
-    --accent3: #f7b731;
-    --red: #ff6b6b;
-    --text: #e8eaf0;
-    --muted: #7a8099;
-    --card-hover: #1e2435;
-  }
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+:root {
+–font-serif: ‘Playfair Display’, Georgia, ‘Times New Roman’, serif;
+–font-mono: ‘DM Mono’, ‘Courier New’, Courier, monospace;
+–font-sans: ‘DM Sans’, -apple-system, BlinkMacSystemFont, ‘Segoe UI’, Helvetica, Arial, sans-serif;
+}
+:root {
+–bg: #0d0f14;
+–surface: #141720;
+–surface2: #1c2030;
+–border: #252a3a;
+–accent: #5af2b0;
+–accent2: #4ecdc4;
+–accent3: #f7b731;
+–red: #ff6b6b;
+–text: #e8eaf0;
+–muted: #7a8099;
+–card-hover: #1e2435;
+}
 
 - { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
 background: var(–bg);
 color: var(–text);
-font-family: ‘DM Sans’, sans-serif;
+font-family: var(–font-sans);
 min-height: 100vh;
 overflow-x: hidden;
 }
@@ -71,7 +77,7 @@ gap: 16px;
 background: rgba(90,242,176,0.1);
 border: 1px solid rgba(90,242,176,0.3);
 color: var(–accent);
-font-family: ‘DM Mono’, monospace;
+font-family: var(–font-mono);
 font-size: 11px;
 letter-spacing: 2px;
 padding: 4px 12px;
@@ -82,7 +88,7 @@ margin-bottom: 12px;
 }
 
 h1 {
-font-family: ‘Playfair Display’, serif;
+font-family: var(–font-serif);
 font-size: clamp(32px, 5vw, 56px);
 font-weight: 900;
 line-height: 1.05;
@@ -115,7 +121,7 @@ gap: 2px;
 }
 
 .stat-num {
-font-family: ‘DM Mono’, monospace;
+font-family: var(–font-mono);
 font-size: 28px;
 font-weight: 500;
 color: var(–accent);
@@ -139,7 +145,7 @@ margin-bottom: 32px;
 }
 
 .filters-title {
-font-family: ‘DM Mono’, monospace;
+font-family: var(–font-mono);
 font-size: 11px;
 letter-spacing: 2px;
 color: var(–muted);
@@ -159,7 +165,7 @@ background: var(–surface2);
 border: 1px solid var(–border);
 border-radius: 4px;
 padding: 6px 14px;
-font-family: ‘DM Mono’, monospace;
+font-family: var(–font-mono);
 font-size: 12px;
 color: var(–text);
 cursor: pointer;
@@ -238,7 +244,7 @@ color: var(–accent2);
 
 /* Sections */
 .section-label {
-font-family: ‘DM Mono’, monospace;
+font-family: var(–font-mono);
 font-size: 11px;
 letter-spacing: 2px;
 color: var(–muted);
@@ -298,7 +304,7 @@ color: #fff;
 }
 
 .platform-type {
-font-family: ‘DM Mono’, monospace;
+font-family: var(–font-mono);
 font-size: 10px;
 letter-spacing: 1.5px;
 padding: 3px 8px;
@@ -347,7 +353,7 @@ color: var(–text);
 padding: 8px 16px;
 border-radius: 4px;
 font-size: 12px;
-font-family: ‘DM Mono’, monospace;
+font-family: var(–font-mono);
 text-decoration: none;
 transition: all 0.15s;
 cursor: pointer;
@@ -462,7 +468,7 @@ background: var(–bg);
 border: 1px solid var(–border);
 border-radius: 4px;
 padding: 12px 16px;
-font-family: ‘DM Mono’, monospace;
+font-family: var(–font-mono);
 font-size: 12px;
 color: var(–accent);
 word-break: break-all;
@@ -482,7 +488,7 @@ border-top: 1px solid var(–border);
 text-align: center;
 color: var(–muted);
 font-size: 12px;
-font-family: ‘DM Mono’, monospace;
+font-family: var(–font-mono);
 }
 
 /* Animations */
@@ -764,7 +770,7 @@ to { opacity: 1; transform: translateY(0); }
   <hr class="divider">
   <div style="margin-bottom:8px;">
     <span class="section-label">⌚ Horlogerie & Luxe — Carrières directes</span>
-    <span style="font-size:12px; color:var(--muted); font-family:'DM Mono',monospace;">Liens directs vers les sites carrières — sans filtre mots-clés, filtre Suisse</span>
+    <span style="font-size:12px; color:var(--muted); font-family:'Courier New',monospace;">Liens directs vers les sites carrières — sans filtre mots-clés, filtre Suisse</span>
   </div>
   <div class="platforms-grid" style="margin-bottom:40px;">
 
