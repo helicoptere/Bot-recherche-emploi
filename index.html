@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 
-<html lang="fr">
+<html lang="fr" style="background:#0d0f14; color:#e8eaf0;">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Job Search Bot — Ingénieure Matériaux Suisse</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #0d0f14;
@@ -14,120 +15,493 @@
     --accent: #5af2b0;
     --accent2: #4ecdc4;
     --accent3: #f7b731;
+    --red: #ff6b6b;
     --text: #e8eaf0;
     --muted: #7a8099;
     --card-hover: #1e2435;
-    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    --serif: Georgia, "Times New Roman", serif;
-    --mono: ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); color: var(--text); font-family: var(--sans); min-height: 100vh; overflow-x: hidden; }
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background-image: linear-gradient(rgba(90,242,176,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(90,242,176,0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none; z-index: 0;
-  }
-  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+- { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+background: #0d0f14 !important;
+color: #e8eaf0 !important;
+font-family: ‘DM Sans’, sans-serif;
+min-height: 100vh;
+overflow-x: hidden;
+}
+
+/* Grid background */
+body::before {
+content: ‘’;
+position: fixed;
+inset: 0;
+background-image:
+linear-gradient(rgba(90,242,176,0.03) 1px, transparent 1px),
+linear-gradient(90deg, rgba(90,242,176,0.03) 1px, transparent 1px);
+background-size: 40px 40px;
+pointer-events: none;
+z-index: 0;
+}
+
+.container {
+max-width: 1200px;
+margin: 0 auto;
+padding: 0 24px;
+position: relative;
+z-index: 1;
+}
 
 /* Header */
-header { padding: 48px 0 32px; border-bottom: 1px solid var(–border); margin-bottom: 40px; }
-.badge {
-background: rgba(90,242,176,0.1); border: 1px solid rgba(90,242,176,0.3);
-color: var(–accent); font-family: var(–mono); font-size: 11px; letter-spacing: 2px;
-padding: 4px 12px; border-radius: 2px; text-transform: uppercase;
-display: inline-block; margin-bottom: 16px;
+header {
+padding: 48px 0 32px;
+border-bottom: 1px solid #252a3a;
+margin-bottom: 40px;
 }
-h1 { font-family: var(–serif); font-size: clamp(30px, 5vw, 52px); font-weight: 900; line-height: 1.1; color: #fff; margin-bottom: 8px; }
-h1 span { color: var(–accent); }
-.subtitle { color: var(–muted); font-size: 15px; max-width: 520px; line-height: 1.6; }
-.stats-row { display: flex; gap: 36px; margin-top: 32px; flex-wrap: wrap; }
-.stat { display: flex; flex-direction: column; gap: 4px; }
-.stat-num { font-family: var(–mono); font-size: 30px; font-weight: 600; color: var(–accent); line-height: 1; }
-.stat-label { font-size: 11px; color: var(–muted); letter-spacing: 1px; text-transform: uppercase; font-family: var(–mono); }
+
+.header-top {
+display: flex;
+align-items: flex-start;
+justify-content: space-between;
+flex-wrap: wrap;
+gap: 16px;
+}
+
+.badge {
+background: rgba(90,242,176,0.1);
+border: 1px solid rgba(90,242,176,0.3);
+color: #5af2b0;
+font-family: ‘DM Mono’, monospace;
+font-size: 11px;
+letter-spacing: 2px;
+padding: 4px 12px;
+border-radius: 2px;
+text-transform: uppercase;
+display: inline-block;
+margin-bottom: 12px;
+}
+
+h1 {
+font-family: ‘Playfair Display’, serif;
+font-size: clamp(32px, 5vw, 56px);
+font-weight: 900;
+line-height: 1.05;
+color: #fff;
+margin-bottom: 8px;
+}
+
+h1 span {
+color: #5af2b0;
+}
+
+.subtitle {
+color: #7a8099;
+font-size: 15px;
+max-width: 500px;
+line-height: 1.6;
+}
+
+.stats-row {
+display: flex;
+gap: 32px;
+margin-top: 32px;
+flex-wrap: wrap;
+}
+
+.stat {
+display: flex;
+flex-direction: column;
+gap: 2px;
+}
+
+.stat-num {
+font-family: ‘DM Mono’, monospace;
+font-size: 28px;
+font-weight: 500;
+color: #5af2b0;
+line-height: 1;
+}
+
+.stat-label {
+font-size: 11px;
+color: #7a8099;
+letter-spacing: 1px;
+text-transform: uppercase;
+}
 
 /* Filters */
-.filters-section { background: var(–surface); border: 1px solid var(–border); border-radius: 8px; padding: 24px; margin-bottom: 32px; }
-.filters-title { font-family: var(–mono); font-size: 11px; letter-spacing: 2px; color: var(–muted); text-transform: uppercase; margin-bottom: 20px; }
-.filter-group { margin-bottom: 20px; }
-.filter-group:last-child { margin-bottom: 0; }
-.filter-group-label { font-family: var(–mono); font-size: 10px; letter-spacing: 1.5px; color: var(–muted); text-transform: uppercase; margin-bottom: 10px; display: block; }
-.chips-row { display: flex; flex-wrap: wrap; gap: 8px; }
-.chip { background: var(–surface2); border: 1px solid var(–border); border-radius: 4px; padding: 7px 14px; font-family: var(–mono); font-size: 12px; color: var(–text); cursor: pointer; transition: all 0.15s; user-select: none; }
-.chip.active { background: rgba(90,242,176,0.12); border-color: rgba(90,242,176,0.4); color: var(–accent); }
-.chip:hover { border-color: var(–accent); }
-.canton-chip { background: var(–surface2); border: 1px solid var(–border); border-radius: 4px; padding: 7px 14px; font-size: 12px; font-family: var(–sans); color: var(–text); cursor: pointer; transition: all 0.15s; user-select: none; }
-.canton-chip.active { background: rgba(247,183,49,0.12); border-color: rgba(247,183,49,0.4); color: var(–accent3); }
-.canton-chip:hover { border-color: var(–accent3); }
-.lang-btn { background: var(–surface2); border: 1px solid var(–border); border-radius: 4px; padding: 7px 14px; font-size: 12px; color: var(–text); cursor: pointer; transition: all 0.15s; user-select: none; }
-.lang-btn.active { background: rgba(78,205,196,0.12); border-color: rgba(78,205,196,0.4); color: var(–accent2); }
-
-/* Open all */
-.open-all-section {
-background: linear-gradient(135deg, rgba(90,242,176,0.07), rgba(78,205,196,0.07));
-border: 1px solid rgba(90,242,176,0.2); border-radius: 8px; padding: 24px; margin-bottom: 40px;
-display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+.filters-section {
+background: #141720;
+border: 1px solid #252a3a;
+border-radius: 8px;
+padding: 24px;
+margin-bottom: 32px;
 }
-.open-all-text h3 { font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 4px; }
-.open-all-text p { font-size: 13px; color: var(–muted); }
-.btn-open-all {
-background: var(–accent); color: #000; border: none; padding: 12px 28px;
-border-radius: 4px; font-weight: 700; font-size: 14px; font-family: var(–sans);
-cursor: pointer; transition: all 0.15s; white-space: nowrap;
+
+.filters-title {
+font-family: ‘DM Mono’, monospace;
+font-size: 11px;
+letter-spacing: 2px;
+color: #7a8099;
+text-transform: uppercase;
+margin-bottom: 16px;
 }
-.btn-open-all:hover { background: #7dffc8; transform: translateY(-1px); }
 
-/* Section */
-.section-head { margin-bottom: 16px; margin-top: 8px; }
-.section-label { font-family: var(–mono); font-size: 11px; letter-spacing: 2px; color: var(–muted); text-transform: uppercase; }
-.section-note { font-size: 12px; color: var(–muted); font-family: var(–mono); margin-left: 12px; }
+.keyword-chips {
+display: flex;
+flex-wrap: wrap;
+gap: 8px;
+margin-bottom: 20px;
+}
 
-/* Grid */
-.platforms-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; margin-bottom: 40px; }
+.chip {
+background: #1c2030;
+border: 1px solid #252a3a;
+border-radius: 4px;
+padding: 6px 14px;
+font-family: ‘DM Mono’, monospace;
+font-size: 12px;
+color: #e8eaf0 !important;
+cursor: pointer;
+transition: all 0.15s;
+user-select: none;
+}
 
-/* Cards */
+.chip.active {
+background: rgba(90,242,176,0.12);
+border-color: rgba(90,242,176,0.4);
+color: #5af2b0;
+}
+
+.chip:hover {
+border-color: #5af2b0;
+}
+
+.canton-chips {
+display: flex;
+flex-wrap: wrap;
+gap: 8px;
+}
+
+.canton-chip {
+background: #1c2030;
+border: 1px solid #252a3a;
+border-radius: 4px;
+padding: 6px 14px;
+font-size: 12px;
+color: #e8eaf0 !important;
+cursor: pointer;
+transition: all 0.15s;
+user-select: none;
+}
+
+.canton-chip.active {
+background: rgba(247,183,49,0.12);
+border-color: rgba(247,183,49,0.4);
+color: #f7b731;
+}
+
+.canton-chip:hover {
+border-color: #f7b731;
+}
+
+.filter-actions {
+display: flex;
+gap: 12px;
+margin-top: 20px;
+flex-wrap: wrap;
+align-items: center;
+}
+
+.lang-toggle {
+display: flex;
+gap: 8px;
+align-items: center;
+}
+
+.lang-btn {
+background: #1c2030;
+border: 1px solid #252a3a;
+border-radius: 4px;
+padding: 6px 14px;
+font-size: 12px;
+color: #e8eaf0 !important;
+cursor: pointer;
+transition: all 0.15s;
+}
+
+.lang-btn.active {
+background: rgba(78,205,196,0.12);
+border-color: rgba(78,205,196,0.4);
+color: #4ecdc4;
+}
+
+/* Sections */
+.section-label {
+font-family: ‘DM Mono’, monospace;
+font-size: 11px;
+letter-spacing: 2px;
+color: #7a8099;
+text-transform: uppercase;
+margin-bottom: 16px;
+margin-right: 16px;
+display: inline-block;
+}
+
+/* Platform grid */
+.platforms-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+gap: 16px;
+margin-bottom: 40px;
+}
+
 .platform-card {
-background: var(–surface); border: 1px solid var(–border); border-radius: 8px;
-padding: 22px; transition: all 0.2s; position: relative; overflow: hidden;
-animation: fadeIn 0.4s ease both;
+background: #141720;
+border: 1px solid #252a3a;
+border-radius: 8px;
+padding: 24px;
+transition: all 0.2s;
+position: relative;
+overflow: hidden;
 }
-.platform-card::before { content: ‘’; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(–accent), var(–accent2)); opacity: 0; transition: opacity 0.2s; }
-.platform-card:hover { background: var(–card-hover); border-color: rgba(90,242,176,0.2); transform: translateY(-2px); }
+
+.platform-card::before {
+content: ‘’;
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 2px;
+background: linear-gradient(90deg, #5af2b0, #4ecdc4);
+opacity: 0;
+transition: opacity 0.2s;
+}
+
+.platform-card:hover {
+background: #1e2435;
+border-color: rgba(90,242,176,0.2);
+transform: translateY(-2px);
+}
+
 .platform-card:hover::before { opacity: 1; }
-.platform-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; gap: 8px; }
-.platform-name { font-size: 16px; font-weight: 700; color: #fff; font-family: var(–sans); }
-.platform-type { font-family: var(–mono); font-size: 10px; letter-spacing: 1.5px; padding: 3px 8px; border-radius: 2px; text-transform: uppercase; white-space: nowrap; flex-shrink: 0; }
-.type-general { background: rgba(90,242,176,0.1);  color: var(–accent);  border: 1px solid rgba(90,242,176,0.2); }
-.type-company { background: rgba(78,205,196,0.1);  color: var(–accent2); border: 1px solid rgba(78,205,196,0.2); }
-.type-sector  { background: rgba(247,183,49,0.1);  color: var(–accent3); border: 1px solid rgba(247,183,49,0.2); }
-.platform-desc { font-size: 13px; color: var(–muted); line-height: 1.55; margin-bottom: 16px; }
-.platform-links { display: flex; gap: 8px; flex-wrap: wrap; }
-.search-btn {
-display: inline-flex; align-items: center; gap: 6px;
-background: transparent; border: 1px solid var(–border); color: var(–text);
-padding: 8px 14px; border-radius: 4px; font-size: 12px; font-family: var(–mono);
-text-decoration: none; transition: all 0.15s; cursor: pointer;
+
+.platform-header {
+display: flex;
+align-items: center;
+justify-content: space-between;
+margin-bottom: 12px;
 }
-.search-btn:hover { border-color: var(–accent); color: var(–accent); background: rgba(90,242,176,0.05); }
-.search-btn.primary { background: rgba(90,242,176,0.1); border-color: rgba(90,242,176,0.3); color: var(–accent); }
-.search-btn.primary:hover { background: rgba(90,242,176,0.2); }
 
-/* Tips */
-.tips-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-bottom: 48px; }
-.tip-card { background: var(–surface); border: 1px solid var(–border); border-radius: 8px; padding: 20px; }
-.tip-icon { font-size: 22px; margin-bottom: 10px; display: block; }
-.tip-title { font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 8px; }
-.tip-text { font-size: 13px; color: var(–muted); line-height: 1.6; }
+.platform-name {
+font-size: 16px;
+font-weight: 600;
+color: #fff;
+}
 
-.divider { border: none; border-top: 1px solid var(–border); margin: 40px 0; }
-footer { padding: 32px 0; border-top: 1px solid var(–border); text-align: center; color: var(–muted); font-size: 12px; font-family: var(–mono); }
+.platform-type {
+font-family: ‘DM Mono’, monospace;
+font-size: 10px;
+letter-spacing: 1.5px;
+padding: 3px 8px;
+border-radius: 2px;
+text-transform: uppercase;
+}
 
-@keyframes fadeIn { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:translateY(0); } }
-.platform-card:nth-child(1){animation-delay:.04s} .platform-card:nth-child(2){animation-delay:.08s}
-.platform-card:nth-child(3){animation-delay:.12s} .platform-card:nth-child(4){animation-delay:.16s}
-.platform-card:nth-child(5){animation-delay:.20s} .platform-card:nth-child(6){animation-delay:.24s}
+.type-general {
+background: rgba(90,242,176,0.1);
+color: #5af2b0;
+border: 1px solid rgba(90,242,176,0.2);
+}
+
+.type-company {
+background: rgba(78,205,196,0.1);
+color: #4ecdc4;
+border: 1px solid rgba(78,205,196,0.2);
+}
+
+.type-sector {
+background: rgba(247,183,49,0.1);
+color: #f7b731;
+border: 1px solid rgba(247,183,49,0.2);
+}
+
+.platform-desc {
+font-size: 13px;
+color: #7a8099;
+line-height: 1.5;
+margin-bottom: 16px;
+}
+
+.platform-links {
+display: flex;
+gap: 8px;
+flex-wrap: wrap;
+}
+
+.search-btn {
+display: inline-flex;
+align-items: center;
+gap: 6px;
+background: transparent;
+border: 1px solid #252a3a;
+color: #e8eaf0 !important;
+padding: 8px 16px;
+border-radius: 4px;
+font-size: 12px;
+font-family: ‘DM Mono’, monospace;
+text-decoration: none;
+transition: all 0.15s;
+cursor: pointer;
+}
+
+.search-btn:hover {
+border-color: #5af2b0;
+color: #5af2b0;
+background: rgba(90,242,176,0.05);
+}
+
+.search-btn.primary {
+background: rgba(90,242,176,0.1);
+border-color: rgba(90,242,176,0.3);
+color: #5af2b0;
+}
+
+.search-btn.primary:hover {
+background: rgba(90,242,176,0.2);
+}
+
+/* Open all button */
+.open-all-section {
+background: linear-gradient(135deg, rgba(90,242,176,0.08), rgba(78,205,196,0.08));
+border: 1px solid rgba(90,242,176,0.2);
+border-radius: 8px;
+padding: 24px;
+margin-bottom: 40px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+flex-wrap: wrap;
+gap: 16px;
+}
+
+.open-all-text h3 {
+font-size: 16px;
+font-weight: 600;
+color: #fff;
+margin-bottom: 4px;
+}
+
+.open-all-text p {
+font-size: 13px;
+color: #7a8099;
+}
+
+.btn-open-all {
+background: #5af2b0;
+color: #000;
+border: none;
+padding: 12px 28px;
+border-radius: 4px;
+font-weight: 600;
+font-size: 14px;
+cursor: pointer;
+transition: all 0.15s;
+letter-spacing: 0.5px;
+white-space: nowrap;
+}
+
+.btn-open-all:hover {
+background: #7dffc8;
+transform: translateY(-1px);
+}
+
+/* Tips section */
+.tips-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+gap: 16px;
+margin-bottom: 48px;
+}
+
+.tip-card {
+background: #141720;
+border: 1px solid #252a3a;
+border-radius: 8px;
+padding: 20px;
+}
+
+.tip-icon {
+font-size: 24px;
+margin-bottom: 10px;
+display: block;
+}
+
+.tip-title {
+font-size: 14px;
+font-weight: 600;
+color: #fff;
+margin-bottom: 8px;
+}
+
+.tip-text {
+font-size: 13px;
+color: #7a8099;
+line-height: 1.6;
+}
+
+/* URL builder */
+.url-builder {
+background: #141720;
+border: 1px solid #252a3a;
+border-radius: 8px;
+padding: 24px;
+margin-bottom: 40px;
+}
+
+.url-display {
+background: #0d0f14 !important;
+border: 1px solid #252a3a;
+border-radius: 4px;
+padding: 12px 16px;
+font-family: ‘DM Mono’, monospace;
+font-size: 12px;
+color: #5af2b0;
+word-break: break-all;
+margin: 16px 0;
+min-height: 48px;
+}
+
+.divider {
+border: none;
+border-top: 1px solid #252a3a;
+margin: 40px 0;
+}
+
+footer {
+padding: 32px 0;
+border-top: 1px solid #252a3a;
+text-align: center;
+color: #7a8099;
+font-size: 12px;
+font-family: ‘DM Mono’, monospace;
+}
+
+/* Animations */
+@keyframes fadeIn {
+from { opacity: 0; transform: translateY(16px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+.platform-card { animation: fadeIn 0.4s ease both; }
+.platform-card:nth-child(1) { animation-delay: 0.05s; }
+.platform-card:nth-child(2) { animation-delay: 0.1s; }
+.platform-card:nth-child(3) { animation-delay: 0.15s; }
+.platform-card:nth-child(4) { animation-delay: 0.2s; }
+.platform-card:nth-child(5) { animation-delay: 0.25s; }
+.platform-card:nth-child(6) { animation-delay: 0.3s; }
+.platform-card:nth-child(7) { animation-delay: 0.35s; }
+.platform-card:nth-child(8) { animation-delay: 0.4s; }
+
+.hidden { display: none; }
 </style>
 
 </head>
@@ -135,339 +509,553 @@ footer { padding: 32px 0; border-top: 1px solid var(–border); text-align: cent
 <div class="container">
 
   <header>
-    <div class="badge">&#9658; Job Search Bot v1.0</div>
-    <h1>Offres d&#8217;emploi<br><span>Ing&#233;nieure Mat&#233;riaux</span></h1>
-    <p class="subtitle">Agr&#233;gateur configur&#233; pour la Suisse romande &#8212; FR &amp; EN &#8212; Mat&#233;riaux, Chimie, Engineering</p>
+    <div class="badge">▸ Job Search Bot v1.0</div>
+    <div class="header-top">
+      <div>
+        <h1>Offres d'emploi<br><span>Ingénieure Matériaux</span></h1>
+        <p class="subtitle">Agrégateur de recherches configuré pour la Suisse romande — FR &amp; EN — Matériaux, Chimie, Engineering</p>
+      </div>
+    </div>
     <div class="stats-row">
-      <div class="stat"><span class="stat-num">24</span><span class="stat-label">Plateformes</span></div>
-      <div class="stat"><span class="stat-num">7</span><span class="stat-label">Cantons cibles</span></div>
-      <div class="stat"><span class="stat-num">8</span><span class="stat-label">Mots-cles</span></div>
+      <div class="stat">
+        <span class="stat-num" id="platformCount">24</span>
+        <span class="stat-label">Plateformes</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">7</span>
+        <span class="stat-label">Cantons ciblés</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">8</span>
+        <span class="stat-label">Mots-clés</span>
+      </div>
     </div>
   </header>
 
+  <!-- Filters -->
+
   <div class="filters-section">
-    <div class="filters-title">Configuration de la recherche</div>
-    <div class="filter-group">
-      <span class="filter-group-label">Mots-cles</span>
-      <div class="chips-row">
-        <div class="chip active" data-kw="ingenieur">ingenieur</div>
-        <div class="chip active" data-kw="master">master</div>
-        <div class="chip active" data-kw="materiaux">materiaux</div>
-        <div class="chip active" data-kw="chimie">chimie</div>
-        <div class="chip active" data-kw="engineer">engineer</div>
-        <div class="chip active" data-kw="chemistry">chemistry</div>
-        <div class="chip active" data-kw="materials">materials</div>
-        <div class="chip active" data-kw="sustainable">sustainable</div>
-      </div>
-    </div>
-    <div class="filter-group">
-      <span class="filter-group-label">Cantons</span>
-      <div class="chips-row">
-        <div class="canton-chip active" data-canton="Geneve">Geneve</div>
-        <div class="canton-chip active" data-canton="Vaud">Vaud</div>
-        <div class="canton-chip active" data-canton="Valais">Valais</div>
-        <div class="canton-chip active" data-canton="Fribourg">Fribourg</div>
-        <div class="canton-chip active" data-canton="Neuchatel">Neuchatel</div>
-        <div class="canton-chip active" data-canton="Berne">Berne</div>
-        <div class="canton-chip active" data-canton="Jura">Jura</div>
-      </div>
-    </div>
-    <div class="filter-group">
-      <span class="filter-group-label">Langues</span>
-      <div class="chips-row">
-        <div class="lang-btn active" data-lang="fr">Francais</div>
-        <div class="lang-btn active" data-lang="en">English</div>
-      </div>
-    </div>
+    <div class="filters-title">⚙ Configuration de la recherche</div>
+
+```
+<div style="margin-bottom:16px">
+  <div class="section-label">Mots-clés</div>
+  <div class="keyword-chips" id="keywordChips">
+    <div class="chip active" data-kw="ingénieur">ingénieur</div>
+    <div class="chip active" data-kw="master">master</div>
+    <div class="chip active" data-kw="matériaux">matériaux</div>
+    <div class="chip active" data-kw="chimie">chimie</div>
+    <div class="chip active" data-kw="engineer">engineer</div>
+    <div class="chip active" data-kw="chemistry">chemistry</div>
+    <div class="chip active" data-kw="materials">materials</div>
+    <div class="chip active" data-kw="sustainable">sustainable</div>
   </div>
+</div>
+
+<div style="margin-bottom:16px">
+  <div class="section-label">Cantons</div>
+  <div class="canton-chips" id="cantonChips">
+    <div class="canton-chip active" data-canton="Genève">📍 Genève</div>
+    <div class="canton-chip active" data-canton="Vaud">📍 Vaud</div>
+    <div class="canton-chip active" data-canton="Valais">📍 Valais</div>
+    <div class="canton-chip active" data-canton="Fribourg">📍 Fribourg</div>
+    <div class="canton-chip active" data-canton="Neuchâtel">📍 Neuchâtel</div>
+    <div class="canton-chip active" data-canton="Berne">📍 Berne</div>
+    <div class="canton-chip active" data-canton="Jura">📍 Jura</div>
+  </div>
+</div>
+
+<div>
+  <div class="section-label">Langues</div>
+  <div class="lang-toggle">
+    <div class="lang-btn active" data-lang="fr">🇫🇷 Français</div>
+    <div class="lang-btn active" data-lang="en">🇬🇧 English</div>
+  </div>
+</div>
+```
+
+  </div>
+
+  <!-- Open All -->
 
   <div class="open-all-section">
     <div class="open-all-text">
       <h3>Lancer toutes les recherches</h3>
-      <p>Ouvre tous les liens configures dans de nouveaux onglets</p>
+      <p>Ouvre tous les liens de recherche configurés dans de nouveaux onglets simultanément</p>
     </div>
-    <button class="btn-open-all" onclick="openAll()">&#9654; Tout ouvrir en un clic</button>
+    <button class="btn-open-all" onclick="openAll()">▶ Tout ouvrir en un clic</button>
   </div>
 
-  <!-- PLATEFORMES GENERALES -->
+  <!-- Platforms -->
 
-  <div class="section-head"><span class="section-label">Plateformes generales</span></div>
+  <div style="margin-bottom:16px;">
+    <span class="section-label">Plateformes générales</span>
+  </div>
+  <div class="platforms-grid" id="generalGrid">
+
+```
+<div class="platform-card" data-category="general">
+  <div class="platform-header">
+    <span class="platform-name">Jobs.ch</span>
+    <span class="platform-type type-general">Général</span>
+  </div>
+  <p class="platform-desc">Le plus grand portail d'emploi suisse. Excellent coverage Suisse romande.</p>
+  <div class="platform-links" id="links-jobsch"></div>
+</div>
+
+<div class="platform-card" data-category="general">
+  <div class="platform-header">
+    <span class="platform-name">Indeed Suisse</span>
+    <span class="platform-type type-general">Général</span>
+  </div>
+  <p class="platform-desc">Moteur d'emploi mondial avec de nombreuses offres suisses. Filtre par langue disponible.</p>
+  <div class="platform-links" id="links-indeed"></div>
+</div>
+
+<div class="platform-card" data-category="general">
+  <div class="platform-header">
+    <span class="platform-name">LinkedIn Jobs</span>
+    <span class="platform-type type-general">Général</span>
+  </div>
+  <p class="platform-desc">Réseau professionnel + offres. Idéal pour le networking en parallèle.</p>
+  <div class="platform-links" id="links-linkedin"></div>
+</div>
+
+<div class="platform-card" data-category="general">
+  <div class="platform-header">
+    <span class="platform-name">Jobup.ch</span>
+    <span class="platform-type type-general">Général</span>
+  </div>
+  <p class="platform-desc">Portail suisse romand par excellence — très bien orienté FR.</p>
+  <div class="platform-links" id="links-jobup"></div>
+</div>
+
+<div class="platform-card" data-category="general">
+  <div class="platform-header">
+    <span class="platform-name">ORP / RAV</span>
+    <span class="platform-type type-general">Officiel</span>
+  </div>
+  <p class="platform-desc">Job-Room.ch — portail officiel du SECO. Offres avec contributions obligatoires.</p>
+  <div class="platform-links" id="links-jobroom"></div>
+</div>
+
+<div class="platform-card" data-category="general">
+  <div class="platform-header">
+    <span class="platform-name">Glassdoor CH</span>
+    <span class="platform-type type-general">Général</span>
+  </div>
+  <p class="platform-desc">Offres + avis d'employés. Utile pour évaluer les entreprises.</p>
+  <div class="platform-links" id="links-glassdoor"></div>
+</div>
+```
+
+  </div>
+
+  <div style="margin-bottom:16px; margin-top:8px;">
+    <span class="section-label">Plateformes spécialisées</span>
+  </div>
   <div class="platforms-grid">
-    <div class="platform-card">
-      <div class="platform-header"><span class="platform-name">Jobs.ch</span><span class="platform-type type-general">General</span></div>
-      <p class="platform-desc">Le plus grand portail d'emploi suisse. Excellent coverage Suisse romande.</p>
-      <div class="platform-links" id="links-jobsch"></div>
-    </div>
-    <div class="platform-card">
-      <div class="platform-header"><span class="platform-name">Indeed Suisse</span><span class="platform-type type-general">General</span></div>
-      <p class="platform-desc">Moteur d'emploi mondial avec de nombreuses offres suisses. Filtre par langue disponible.</p>
-      <div class="platform-links" id="links-indeed"></div>
-    </div>
-    <div class="platform-card">
-      <div class="platform-header"><span class="platform-name">LinkedIn Jobs</span><span class="platform-type type-general">General</span></div>
-      <p class="platform-desc">Reseau professionnel + offres. Ideal pour le networking en parallele.</p>
-      <div class="platform-links" id="links-linkedin"></div>
-    </div>
-    <div class="platform-card">
-      <div class="platform-header"><span class="platform-name">Jobup.ch</span><span class="platform-type type-general">General</span></div>
-      <p class="platform-desc">Portail suisse romand par excellence &#8212; tres bien oriente FR.</p>
-      <div class="platform-links" id="links-jobup"></div>
-    </div>
-    <div class="platform-card">
-      <div class="platform-header"><span class="platform-name">ORP / RAV &#8212; Job-Room</span><span class="platform-type type-general">Officiel</span></div>
-      <p class="platform-desc">Portail officiel du SECO. Offres avec contributions obligatoires.</p>
-      <div class="platform-links" id="links-jobroom"></div>
-    </div>
-    <div class="platform-card">
-      <div class="platform-header"><span class="platform-name">Glassdoor CH</span><span class="platform-type type-general">General</span></div>
-      <p class="platform-desc">Offres + avis d'employes. Utile pour evaluer les entreprises.</p>
-      <div class="platform-links" id="links-glassdoor"></div>
-    </div>
+
+```
+<div class="platform-card" data-category="sector">
+  <div class="platform-header">
+    <span class="platform-name">EurAxess</span>
+    <span class="platform-type type-sector">R&D / Académique</span>
+  </div>
+  <p class="platform-desc">Postes de chercheurs et ingénieurs financés par la Commission Européenne. Top pour matériaux.</p>
+  <div class="platform-links" id="links-euraxess"></div>
+</div>
+
+<div class="platform-card" data-category="sector">
+  <div class="platform-header">
+    <span class="platform-name">EPFL / UNIL Carrières</span>
+    <span class="platform-type type-sector">Académique</span>
+  </div>
+  <p class="platform-desc">Postes académiques, postdocs et ingénieurs dans les labos. EPFL = leader matériaux CH.</p>
+  <div class="platform-links" id="links-epfl"></div>
+</div>
+
+<div class="platform-card" data-category="sector">
+  <div class="platform-header">
+    <span class="platform-name">Helveticajob.ch</span>
+    <span class="platform-type type-sector">Spécialisé CH</span>
+  </div>
+  <p class="platform-desc">Offres d'emploi suisses dans l'industrie technique et chimique.</p>
+  <div class="platform-links" id="links-helvetica"></div>
+</div>
+
+<div class="platform-card" data-category="sector">
+  <div class="platform-header">
+    <span class="platform-name">Emploi-environnement.com</span>
+    <span class="platform-type type-sector">Durabilité</span>
+  </div>
+  <p class="platform-desc">Emplois dans l'environnement, la chimie verte, le développement durable.</p>
+  <div class="platform-links" id="links-enviro"></div>
+</div>
+```
+
   </div>
 
-  <!-- PLATEFORMES SPECIALISEES -->
-
-  <div class="section-head"><span class="section-label">Plateformes specialisees</span></div>
+  <div style="margin-bottom:16px; margin-top:8px;">
+    <span class="section-label">Grands employeurs — portails directs</span>
+  </div>
   <div class="platforms-grid">
-    <div class="platform-card">
-      <div class="platform-header"><span class="platform-name">EurAxess</span><span class="platform-type type-sector">R&amp;D / Academique</span></div>
-      <p class="platform-desc">Postes de chercheurs et ingenieurs finances par la Commission Europeenne. Top pour materiaux.</p>
-      <div class="platform-links" id="links-euraxess"></div>
-    </div>
-    <div class="platform-card">
-      <div class="platform-header"><span class="platform-name">EPFL / UNIL Carrieres</span><span class="platform-type type-sector">Academique</span></div>
-      <p class="platform-desc">Postes academiques, postdocs et ingenieurs dans les labos. EPFL = leader materiaux CH.</p>
-      <div class="platform-links" id="links-epfl"></div>
-    </div>
-    <div class="platform-card">
-      <div class="platform-header"><span class="platform-name">Helveticajob.ch</span><span class="platform-type type-sector">Specialise CH</span></div>
-      <p class="platform-desc">Offres d'emploi suisses dans l'industrie technique et chimique.</p>
-      <div class="platform-links" id="links-helvetica"></div>
-    </div>
-    <div class="platform-card">
-      <div class="platform-header"><span class="platform-name">Emploi-environnement.com</span><span class="platform-type type-sector">Durabilite</span></div>
-      <p class="platform-desc">Emplois dans l'environnement, la chimie verte, le developpement durable.</p>
-      <div class="platform-links" id="links-enviro"></div>
-    </div>
+
+```
+<div class="platform-card" data-category="company">
+  <div class="platform-header">
+    <span class="platform-name">Sika AG</span>
+    <span class="platform-type type-company">Entreprise</span>
+  </div>
+  <p class="platform-desc">Leader mondial des matériaux de construction — HQ Baar, nombreux labos CH.</p>
+  <div class="platform-links" id="links-sika"></div>
+</div>
+
+<div class="platform-card" data-category="company">
+  <div class="platform-header">
+    <span class="platform-name">Lonza Group</span>
+    <span class="platform-type type-company">Entreprise</span>
+  </div>
+  <p class="platform-desc">Chimie fine et biosciences — site majeur à Viège (Valais).</p>
+  <div class="platform-links" id="links-lonza"></div>
+</div>
+
+<div class="platform-card" data-category="company">
+  <div class="platform-header">
+    <span class="platform-name">Firmenich / dsm-firmenich</span>
+    <span class="platform-type type-company">Entreprise</span>
+  </div>
+  <p class="platform-desc">Parfums, nutrition, chimie — HQ à Genève / Kaiseraugst.</p>
+  <div class="platform-links" id="links-firmenich"></div>
+</div>
+
+<div class="platform-card" data-category="company">
+  <div class="platform-header">
+    <span class="platform-name">CERN</span>
+    <span class="platform-type type-company">Recherche</span>
+  </div>
+  <p class="platform-desc">Postes d'ingénieurs matériaux, cryogénie, etc. — Genève. En anglais.</p>
+  <div class="platform-links" id="links-cern"></div>
+</div>
+
+<div class="platform-card" data-category="company">
+  <div class="platform-header">
+    <span class="platform-name">Bobst Group</span>
+    <span class="platform-type type-company">Entreprise</span>
+  </div>
+  <p class="platform-desc">Machines d'emballage, matériaux — HQ à Mex (Vaud).</p>
+  <div class="platform-links" id="links-bobst"></div>
+</div>
+
+<div class="platform-card" data-category="company">
+  <div class="platform-header">
+    <span class="platform-name">Neste / Clariant</span>
+    <span class="platform-type type-company">Entreprise</span>
+  </div>
+  <p class="platform-desc">Chimie de spécialité, matériaux durables — présence en Suisse romande.</p>
+  <div class="platform-links" id="links-clariant"></div>
+</div>
+```
+
   </div>
 
-  <!-- GRANDS EMPLOYEURS -->
-
-  <div class="section-head"><span class="section-label">Grands employeurs &#8212; portails directs</span></div>
-  <div class="platforms-grid">
-    <div class="platform-card">
-      <div class="platform-header"><span class="platform-name">Sika AG</span><span class="platform-type type-company">Entreprise</span></div>
-      <p class="platform-desc">Leader mondial des materiaux de construction &#8212; HQ Baar, nombreux labos CH.</p>
-      <div class="platform-links" id="links-sika"></div>
-    </div>
-    <div class="platform-card">
-      <div class="platform-header"><span class="platform-name">Lonza Group</span><span class="platform-type type-company">Entreprise</span></div>
-      <p class="platform-desc">Chimie fine et biosciences &#8212; site majeur a Viege (Valais).</p>
-      <div class="platform-links" id="links-lonza"></div>
-    </div>
-    <div class="platform-card">
-      <div class="platform-header"><span class="platform-name">dsm-firmenich</span><span class="platform-type type-company">Entreprise</span></div>
-      <p class="platform-desc">Parfums, nutrition, chimie &#8212; HQ a Geneve / Kaiseraugst.</p>
-      <div class="platform-links" id="links-firmenich"></div>
-    </div>
-    <div class="platform-card">
-      <div class="platform-header"><span class="platform-name">CERN</span><span class="platform-type type-company">Recherche</span></div>
-      <p class="platform-desc">Postes d'ingenieurs materiaux, cryogenie, surfaces &#8212; Geneve. En anglais.</p>
-      <div class="platform-links" id="links-cern"></div>
-    </div>
-    <div class="platform-card">
-      <div class="platform-header"><span class="platform-name">Bobst Group</span><span class="platform-type type-company">Entreprise</span></div>
-      <p class="platform-desc">Machines d'emballage, materiaux &#8212; HQ a Mex (Vaud).</p>
-      <div class="platform-links" id="links-bobst"></div>
-    </div>
-    <div class="platform-card">
-      <div class="platform-header"><span class="platform-name">Clariant</span><span class="platform-type type-company">Entreprise</span></div>
-      <p class="platform-desc">Chimie de specialite, materiaux durables &#8212; presence en Suisse romande.</p>
-      <div class="platform-links" id="links-clariant"></div>
-    </div>
-  </div>
-
-  <!-- HORLOGERIE & LUXE -->
+  <!-- Horlogerie & Luxe -->
 
   <hr class="divider">
-  <div class="section-head">
-    <span class="section-label">Horlogerie &amp; Luxe &#8212; Carrieres directes</span>
-    <span class="section-note">Liens directs &#8212; sans filtre mots-cles</span>
+  <div style="margin-bottom:8px;">
+    <span class="section-label">⌚ Horlogerie & Luxe — Carrières directes</span>
+    <span style="font-size:12px; color:#7a8099; font-family:'DM Mono',monospace;">Liens directs vers les sites carrières — sans filtre mots-clés, filtre Suisse</span>
   </div>
-  <div class="platforms-grid">
-    <div class="platform-card">
-      <div class="platform-header"><span class="platform-name">Rolex</span><span class="platform-type type-company">Horlogerie</span></div>
-      <p class="platform-desc">HQ Geneve + sites Plan-les-Ouates, Chene-Bourg, Bienne &#8212; ingenieurs materiaux, metallurgie, R&amp;D boitiers.</p>
-      <div class="platform-links">
-        <a class="search-btn primary" href="https://www.carrieres-rolex.com/" target="_blank" rel="noopener">&#8599; carrieres-rolex.com</a>
-      </div>
-    </div>
-    <div class="platform-card">
-      <div class="platform-header"><span class="platform-name">Richemont</span><span class="platform-type type-company">Luxe / Groupe</span></div>
-      <p class="platform-desc">Groupe (Cartier, IWC, Piaget, Van Cleef) &#8212; HQ Bellevue (GE). Nombreux postes techniques en Suisse.</p>
-      <div class="platform-links">
-        <a class="search-btn primary" href="https://www.richemont.com/talent/" target="_blank" rel="noopener">&#8599; Richemont Talent</a>
-      </div>
-    </div>
-    <div class="platform-card">
-      <div class="platform-header"><span class="platform-name">Swatch Group</span><span class="platform-type type-company">Horlogerie</span></div>
-      <p class="platform-desc">Groupe (Omega, Longines, Breguet, Blancpain) &#8212; HQ Biel/Bienne. Fort besoin en ingenieurs materiaux.</p>
-      <div class="platform-links">
-        <a class="search-btn primary" href="https://www.swatchgroup.com/en/job-finder" target="_blank" rel="noopener">&#8599; Job Finder CH</a>
-      </div>
-    </div>
-    <div class="platform-card">
-      <div class="platform-header"><span class="platform-name">Patek Philippe</span><span class="platform-type type-company">Horlogerie</span></div>
-      <p class="platform-desc">Manufacture a Plan-les-Ouates (GE) &#8212; R&amp;D materiaux de pointe, filiere technique.</p>
-      <div class="platform-links">
-        <a class="search-btn primary" href="https://careers.patek.com/" target="_blank" rel="noopener">&#8599; careers.patek.com</a>
-      </div>
-    </div>
-    <div class="platform-card">
-      <div class="platform-header"><span class="platform-name">Audemars Piguet</span><span class="platform-type type-company">Horlogerie</span></div>
-      <p class="platform-desc">Manufacture au Brassus (VD) + Meyrin (GE) &#8212; innovations materiaux : ceramique, carbone forge, tantale.</p>
-      <div class="platform-links">
-        <a class="search-btn primary" href="https://careers.audemarspiguet.com/en/job-listing" target="_blank" rel="noopener">&#8599; AP Job Listing</a>
-      </div>
-    </div>
-    <div class="platform-card">
-      <div class="platform-header"><span class="platform-name">Chopard</span><span class="platform-type type-company">Horlogerie / Joaillerie</span></div>
-      <p class="platform-desc">Manufacture a Meyrin (GE) &#8212; or ethique, materiaux certifies, R&amp;D joaillerie.</p>
-      <div class="platform-links">
-        <a class="search-btn primary" href="https://www.chopard.com/fr-fr/careers.html" target="_blank" rel="noopener">&#8599; Chopard Careers</a>
-      </div>
-    </div>
-    <div class="platform-card">
-      <div class="platform-header"><span class="platform-name">Chanel</span><span class="platform-type type-company">Luxe</span></div>
-      <p class="platform-desc">Presence en Suisse (Geneve) &#8212; R&amp;D, cosmetiques, horlogerie. Portail carrieres Suisse.</p>
-      <div class="platform-links">
-        <a class="search-btn primary" href="https://careers.chanel.com/en_CH" target="_blank" rel="noopener">&#8599; Chanel Careers CH</a>
-      </div>
-    </div>
-    <div class="platform-card">
-      <div class="platform-header"><span class="platform-name">LVMH / Dior</span><span class="platform-type type-company">Luxe / Groupe</span></div>
-      <p class="platform-desc">LVMH regroupe Dior, TAG Heuer, Bvlgari, Hublot, Louis Vuitton &#8212; offres groupe en Suisse.</p>
-      <div class="platform-links">
-        <a class="search-btn primary" href="https://www.lvmh.com/en/join-us/our-job-offers" target="_blank" rel="noopener">&#8599; LVMH Offres</a>
-        <a class="search-btn" href="https://careers.smartrecruiters.com/LVMH2" target="_blank" rel="noopener">&#8599; SmartRecruiters</a>
-      </div>
-    </div>
+  <div class="platforms-grid" style="margin-bottom:40px;">
+
+```
+<div class="platform-card">
+  <div class="platform-header">
+    <span class="platform-name">Rolex</span>
+    <span class="platform-type type-company">Horlogerie</span>
+  </div>
+  <p class="platform-desc">HQ Genève + sites Plan-les-Ouates, Chêne-Bourg, Bienne — ingénieurs matériaux, métallurgie, R&D boîtiers et bracelets.</p>
+  <div class="platform-links">
+    <a class="search-btn primary" href="https://www.carrieres-rolex.com/" target="_blank" rel="noopener">↗ carrieres-rolex.com</a>
+  </div>
+</div>
+
+<div class="platform-card">
+  <div class="platform-header">
+    <span class="platform-name">Richemont</span>
+    <span class="platform-type type-company">Luxe / Groupe</span>
+  </div>
+  <p class="platform-desc">Groupe (Cartier, IWC, Piaget, Van Cleef…) — HQ Bellevue (GE). Nombreux postes techniques en Suisse.</p>
+  <div class="platform-links">
+    <a class="search-btn primary" href="https://www.richemont.com/talent/" target="_blank" rel="noopener">↗ Richemont Talent</a>
+  </div>
+</div>
+
+<div class="platform-card">
+  <div class="platform-header">
+    <span class="platform-name">Swatch Group</span>
+    <span class="platform-type type-company">Horlogerie</span>
+  </div>
+  <p class="platform-desc">Groupe (Omega, Longines, Breguet, Blancpain…) — HQ Biel/Bienne. Fort besoin en ingénieurs matériaux et chimistes.</p>
+  <div class="platform-links">
+    <a class="search-btn primary" href="https://www.swatchgroup.com/en/job-finder" target="_blank" rel="noopener">↗ Job Finder CH</a>
+  </div>
+</div>
+
+<div class="platform-card">
+  <div class="platform-header">
+    <span class="platform-name">Patek Philippe</span>
+    <span class="platform-type type-company">Horlogerie</span>
+  </div>
+  <p class="platform-desc">Manufacture à Plan-les-Ouates (GE) — R&D matériaux de pointe, filière technique et R&D-Technique.</p>
+  <div class="platform-links">
+    <a class="search-btn primary" href="https://careers.patek.com/" target="_blank" rel="noopener">↗ careers.patek.com</a>
+  </div>
+</div>
+
+<div class="platform-card">
+  <div class="platform-header">
+    <span class="platform-name">Audemars Piguet</span>
+    <span class="platform-type type-company">Horlogerie</span>
+  </div>
+  <p class="platform-desc">Manufacture au Brassus (VD) + site Meyrin (GE) — innovations matériaux : céramique, carbone forgé, tantale.</p>
+  <div class="platform-links">
+    <a class="search-btn primary" href="https://careers.audemarspiguet.com/en/job-listing" target="_blank" rel="noopener">↗ AP Job Listing</a>
+  </div>
+</div>
+
+<div class="platform-card">
+  <div class="platform-header">
+    <span class="platform-name">Chopard</span>
+    <span class="platform-type type-company">Horlogerie / Joaillerie</span>
+  </div>
+  <p class="platform-desc">Manufacture à Meyrin (GE) — or éthique, matériaux certifiés, R&D joaillerie et horlogerie.</p>
+  <div class="platform-links">
+    <a class="search-btn primary" href="https://www.chopard.com/fr-fr/careers.html" target="_blank" rel="noopener">↗ Chopard Careers</a>
+  </div>
+</div>
+
+<div class="platform-card">
+  <div class="platform-header">
+    <span class="platform-name">Chanel</span>
+    <span class="platform-type type-company">Luxe</span>
+  </div>
+  <p class="platform-desc">Présence en Suisse (Genève) — R&D, cosmétiques, horlogerie (Chanel Watches). Portail carrières CH.</p>
+  <div class="platform-links">
+    <a class="search-btn primary" href="https://careers.chanel.com/en_CH" target="_blank" rel="noopener">↗ Chanel Careers CH</a>
+  </div>
+</div>
+
+<div class="platform-card">
+  <div class="platform-header">
+    <span class="platform-name">LVMH / Dior</span>
+    <span class="platform-type type-company">Luxe / Groupe</span>
+  </div>
+  <p class="platform-desc">LVMH regroupe Dior, TAG Heuer, Bvlgari, Hublot, Louis Vuitton… Offres groupe + Dior en Suisse.</p>
+  <div class="platform-links">
+    <a class="search-btn primary" href="https://www.lvmh.com/en/join-us/our-job-offers" target="_blank" rel="noopener">↗ LVMH Offres</a>
+    <a class="search-btn" href="https://careers.smartrecruiters.com/LVMH2" target="_blank" rel="noopener">↗ LVMH SmartRecruiters</a>
+  </div>
+</div>
+```
+
   </div>
 
-  <!-- CONSEILS -->
+  <!-- Tips -->
 
   <hr class="divider">
-  <div class="section-head"><span class="section-label">Conseils de recherche</span></div>
-  <div class="tips-grid" style="margin-top:16px;">
+  <div style="margin-bottom:16px;">
+    <span class="section-label">Conseils de recherche</span>
+  </div>
+  <div class="tips-grid">
     <div class="tip-card">
-      <span class="tip-icon">&#128276;</span>
+      <span class="tip-icon">🔔</span>
       <div class="tip-title">Activer les alertes email</div>
-      <p class="tip-text">Sur jobs.ch, LinkedIn et Indeed, cree des alertes avec tes mots-cles pour recevoir les nouvelles offres des leur publication.</p>
+      <p class="tip-text">Sur jobs.ch, LinkedIn et Indeed, crée des alertes avec tes mots-clés pour recevoir les nouvelles offres dès leur publication.</p>
     </div>
     <div class="tip-card">
-      <span class="tip-icon">&#127464;&#127469;</span>
+      <span class="tip-icon">🇨🇭</span>
       <div class="tip-title">Filtre "Suisse romande"</div>
-      <p class="tip-text">Sur jobs.ch et jobup.ch, utilise le filtre region "Romandie" pour cibler tous les cantons francophones d'un coup.</p>
+      <p class="tip-text">Sur jobs.ch et jobup.ch, utilise le filtre région "Romandie" pour cibler tous les cantons francophones d'un coup.</p>
     </div>
     <div class="tip-card">
-      <span class="tip-icon">&#128196;</span>
+      <span class="tip-icon">📄</span>
       <div class="tip-title">CV en 2 versions</div>
-      <p class="tip-text">Prepare un CV en francais et un en anglais (CERN, EPFL, multinationales). Format suisse sobre, 2 pages max.</p>
+      <p class="tip-text">Prépare un CV en français (pour les offres CH-FR) et un en anglais (CERN, EPFL, multinationales). Le format suisse est sobre, 2 pages max.</p>
     </div>
     <div class="tip-card">
-      <span class="tip-icon">&#129309;</span>
-      <div class="tip-title">Candidatures spontanees</div>
-      <p class="tip-text">En Suisse, les candidatures directes aux entreprises sont tres bien recues. Identifie les RH sur LinkedIn et ecris directement.</p>
+      <span class="tip-icon">🤝</span>
+      <div class="tip-title">Candidatures spontanées</div>
+      <p class="tip-text">En Suisse, les candidatures directes aux entreprises sont très bien reçues. Identifie les RH sur LinkedIn et écris directement.</p>
     </div>
     <div class="tip-card">
-      <span class="tip-icon">&#128300;</span>
-      <div class="tip-title">Reseaux sectoriels</div>
-      <p class="tip-text">SCS (Swiss Chemical Society), Swissmem (industrie mecanique), Swisscleantech pour les postes durabilite &#8212; tous publient des offres.</p>
+      <span class="tip-icon">🔬</span>
+      <div class="tip-title">Réseaux sectoriels</div>
+      <p class="tip-text">SCS (Swiss Chemical Society), Swissmem (industrie mécanique), Swisscleantech pour les postes durabilité — tous publient des offres.</p>
     </div>
     <div class="tip-card">
-      <span class="tip-icon">&#128161;</span>
-      <div class="tip-title">Mots-cles bonus</div>
-      <p class="tip-text">Essaie aussi : polymere, biomaterials, surface science, coating, composites, failure analysis, quality engineer.</p>
+      <span class="tip-icon">💡</span>
+      <div class="tip-title">Mots-clés bonus</div>
+      <p class="tip-text">Essaie aussi : "polymère", "biomaterials", "surface science", "coating", "composites", "failure analysis", "quality engineer".</p>
     </div>
   </div>
 
   <footer>
-    <p>Job Search Bot &#8212; Ingenieure Materiaux Suisse Romande &nbsp;&#183;&nbsp; Genere par Claude</p>
+    <p>Job Search Bot — Ingénieure Matériaux Suisse Romande &nbsp;·&nbsp; Généré par Claude &nbsp;·&nbsp; Mis à jour à chaque ouverture</p>
   </footer>
+
 </div>
 
 <script>
-  var activeKeywords = ['ingenieur','master','materiaux','chimie','engineer','chemistry','materials','sustainable'];
-  var activeCantons  = ['Geneve','Vaud','Valais','Fribourg','Neuchatel','Berne','Jura'];
+  // ─── State ───────────────────────────────────────────────
+  let activeKeywords = ['ingénieur','master','matériaux','chimie','engineer','chemistry','materials','sustainable'];
+  let activeCantons = ['Genève','Vaud','Valais','Fribourg','Neuchâtel','Berne','Jura'];
+  let activeLangs = ['fr','en'];
 
-  document.querySelectorAll('.chip').forEach(function(c) {
-    c.addEventListener('click', function() {
-      var kw = c.dataset.kw;
+  // ─── Chip toggling ────────────────────────────────────────
+  document.querySelectorAll('.chip').forEach(c => {
+    c.addEventListener('click', () => {
+      const kw = c.dataset.kw;
       c.classList.toggle('active');
-      if (c.classList.contains('active')) { activeKeywords.push(kw); }
-      else { activeKeywords = activeKeywords.filter(function(k){ return k !== kw; }); }
+      if (c.classList.contains('active')) activeKeywords.push(kw);
+      else activeKeywords = activeKeywords.filter(k => k !== kw);
       renderLinks();
     });
   });
 
-  document.querySelectorAll('.canton-chip').forEach(function(c) {
-    c.addEventListener('click', function() {
-      var ct = c.dataset.canton;
+  document.querySelectorAll('.canton-chip').forEach(c => {
+    c.addEventListener('click', () => {
+      const ct = c.dataset.canton;
       c.classList.toggle('active');
-      if (c.classList.contains('active')) { activeCantons.push(ct); }
-      else { activeCantons = activeCantons.filter(function(k){ return k !== ct; }); }
+      if (c.classList.contains('active')) activeCantons.push(ct);
+      else activeCantons = activeCantons.filter(k => k !== ct);
       renderLinks();
     });
   });
 
-  document.querySelectorAll('.lang-btn').forEach(function(c) {
-    c.addEventListener('click', function() { c.classList.toggle('active'); });
+  document.querySelectorAll('.lang-btn').forEach(c => {
+    c.addEventListener('click', () => {
+      const lang = c.dataset.lang;
+      c.classList.toggle('active');
+      if (c.classList.contains('active')) activeLangs.push(lang);
+      else activeLangs = activeLangs.filter(k => k !== lang);
+    });
   });
+
+  // ─── Link generators ─────────────────────────────────────
+  function getQuery(sep = ' OR ') {
+    return activeKeywords.join(sep);
+  }
+
+  function getCantonList() {
+    return activeCantons.join(' OR ');
+  }
 
   function buildLinks() {
-    var kw = activeKeywords.slice(0,3).join(' ');
-    var cantons = activeCantons;
-    return {
-      'jobsch':    cantons.map(function(c){ return { label: c, url: 'https://www.jobs.ch/fr/offres/?term='+encodeURIComponent(kw)+'&location='+encodeURIComponent(c) }; }),
-      'indeed':    cantons.slice(0,3).map(function(c){ return { label: c, url: 'https://ch.indeed.com/emplois?q='+encodeURIComponent(kw)+'&l='+encodeURIComponent(c+', Suisse')+'&lang=fr' }; }),
-      'linkedin':  [{label:'FR: materiaux',url:'https://www.linkedin.com/jobs/search/?keywords='+encodeURIComponent('ingenieur materiaux OR materials engineer')+'&location=Romandie%2C%20Suisse'},{label:'EN: engineer',url:'https://www.linkedin.com/jobs/search/?keywords='+encodeURIComponent('materials engineer OR chemistry OR sustainable')+'&location=Romandie%2C%20Suisse'}],
-      'jobup':     cantons.slice(0,4).map(function(c){ return { label: c, url: 'https://www.jobup.ch/fr/emplois/?term='+encodeURIComponent(kw)+'&regionName='+encodeURIComponent(c) }; }),
-      'jobroom':   [{label:'Rechercher',url:'https://www.job-room.ch/home/jobseeker/searchResult?language=fr&searchText='+encodeURIComponent(kw)}],
-      'glassdoor': [{label:'Suisse romande',url:'https://www.glassdoor.fr/Emploi/suisse-'+encodeURIComponent(kw.replace(/ /g,'-'))+'-emplois-SRCH_IL.0,6_IN209_KO7,30.htm'}],
-      'euraxess':  [{label:'Switzerland',url:'https://euraxess.ec.europa.eu/jobs/search?keywords='+encodeURIComponent('materials engineer')+'&country=CH'}],
-      'epfl':      [{label:'EPFL Careers',url:'https://recruiting.epfl.ch/Vacancies/SearchResults?Keywords='+encodeURIComponent('materials')},{label:'UNIL Emplois',url:'https://unil.ch/srh/fr/home/menuinst/recrutement/postes-vacants.html'}],
-      'helvetica': [{label:'Technique CH',url:'https://www.helveticajob.ch/recherche-d-emploi?q='+encodeURIComponent(kw)+'&location=Suisse+romande'}],
-      'enviro':    [{label:'Durabilite',url:'https://www.emploi-environnement.com/offres-emploi/?q='+encodeURIComponent('materiaux OR chimie OR ingenieur')+'&country=CH'}],
-      'sika':      [{label:'Sika Careers',url:'https://www.sika.com/en/company/career.html'}],
-      'lonza':     [{label:'Lonza Jobs',url:'https://jobs.lonza.com/search/?q='+encodeURIComponent('engineer materials chemistry')+'&locationsearch=Switzerland'}],
-      'firmenich': [{label:'dsm-firmenich',url:'https://www.dsm-firmenich.com/en/careers/find-a-job.html?q='+encodeURIComponent('engineer')+'&locations=Switzerland'}],
-      'cern':      [{label:'CERN Careers',url:'https://careers.cern/join-us/staff-and-fellow-members?field_functional_domain=Engineering&field_functional_domain=Materials+and+Surfaces'}],
-      'bobst':     [{label:'Bobst Jobs',url:'https://www.bobst.com/en/career/open-positions/?keywords='+encodeURIComponent('engineer materials')}],
-      'clariant':  [{label:'Clariant',url:'https://jobs.clariant.com/search/?q='+encodeURIComponent('materials chemistry engineer')+'&locationsearch=Switzerland'}]
+    const kw = activeKeywords.slice(0, 3).join(' '); // main query
+    const kwAll = activeKeywords.join('+OR+');
+    const cantons = activeCantons;
+
+    const platforms = {
+      'jobsch': cantons.map(c => ({
+        label: c,
+        url: `https://www.jobs.ch/fr/offres/?term=${encodeURIComponent(kw)}&location=${encodeURIComponent(c)}`
+      })),
+      'indeed': cantons.slice(0,3).map(c => ({
+        label: c,
+        url: `https://ch.indeed.com/emplois?q=${encodeURIComponent(kw)}&l=${encodeURIComponent(c+', Suisse')}&lang=fr`
+      })),
+      'linkedin': [{
+        label: 'FR: matériaux',
+        url: `https://www.linkedin.com/jobs/search/?keywords=${encodeURIComponent('ingenieur materiaux OR materials engineer')}&location=Romandie%2C%20Suisse`
+      },{
+        label: 'EN: engineer',
+        url: `https://www.linkedin.com/jobs/search/?keywords=${encodeURIComponent('materials engineer OR chemistry OR sustainable')}&location=Romandie%2C%20Suisse`
+      }],
+      'jobup': cantons.slice(0,4).map(c => ({
+        label: c,
+        url: `https://www.jobup.ch/fr/emplois/?term=${encodeURIComponent(kw)}&regionName=${encodeURIComponent(c)}`
+      })),
+      'jobroom': [{
+        label: 'Rechercher →',
+        url: `https://www.job-room.ch/home/jobseeker/searchResult?language=fr&searchText=${encodeURIComponent(kw)}`
+      }],
+      'glassdoor': [{
+        label: 'Suisse romande →',
+        url: `https://www.glassdoor.fr/Emploi/suisse-${encodeURIComponent(kw.replace(/ /g,'-'))}-emplois-SRCH_IL.0,6_IN209_KO7,30.htm`
+      }],
+      'euraxess': [{
+        label: 'Switzerland →',
+        url: `https://euraxess.ec.europa.eu/jobs/search?keywords=${encodeURIComponent('materials engineer')}&country=CH`
+      }],
+      'epfl': [{
+        label: 'EPFL Careers →',
+        url: `https://recruiting.epfl.ch/Vacancies/SearchResults?Keywords=${encodeURIComponent('materials')}`
+      },{
+        label: 'UNIL Emplois →',
+        url: `https://unil.ch/srh/fr/home/menuinst/recrutement/postes-vacants.html`
+      }],
+      'helvetica': [{
+        label: 'Technique CH →',
+        url: `https://www.helveticajob.ch/recherche-d-emploi?q=${encodeURIComponent(kw)}&location=Suisse+romande`
+      }],
+      'enviro': [{
+        label: 'Durabilité →',
+        url: `https://www.emploi-environnement.com/offres-emploi/?q=${encodeURIComponent('matériaux OR chimie OR ingénieur')}&country=CH`
+      }],
+      'sika': [{
+        label: 'Sika Careers →',
+        url: `https://www.sika.com/en/company/career.html`
+      }],
+      'lonza': [{
+        label: 'Lonza Jobs →',
+        url: `https://jobs.lonza.com/search/?q=${encodeURIComponent('engineer materials chemistry')}&locationsearch=Switzerland`
+      }],
+      'firmenich': [{
+        label: 'dsm-firmenich →',
+        url: `https://www.dsm-firmenich.com/en/careers/find-a-job.html?q=${encodeURIComponent('engineer')}&locations=Switzerland`
+      }],
+      'cern': [{
+        label: 'CERN Careers →',
+        url: `https://careers.cern/join-us/staff-and-fellow-members?field_functional_domain=Engineering&field_functional_domain=Materials+and+Surfaces`
+      }],
+      'bobst': [{
+        label: 'Bobst Jobs →',
+        url: `https://www.bobst.com/en/career/open-positions/?keywords=${encodeURIComponent('engineer materials')}`
+      }],
+      'clariant': [{
+        label: 'Clariant →',
+        url: `https://jobs.clariant.com/search/?q=${encodeURIComponent('materials chemistry engineer')}&locationsearch=Switzerland`
+      }],
     };
+
+    return platforms;
   }
 
   function renderLinks() {
-    var platforms = buildLinks();
-    Object.keys(platforms).forEach(function(id) {
-      var el = document.getElementById('links-'+id);
-      if (!el) return;
-      el.innerHTML = platforms[id].map(function(l) {
-        return '<a class="search-btn primary" href="'+l.url+'" target="_blank" rel="noopener">&#8599; '+l.label+'</a>';
-      }).join('');
-    });
+    const platforms = buildLinks();
+    for (const [id, links] of Object.entries(platforms)) {
+      const el = document.getElementById('links-' + id);
+      if (!el) continue;
+      el.innerHTML = links.map(l =>
+        `<a class="search-btn primary" href="${l.url}" target="_blank" rel="noopener">↗ ${l.label}</a>`
+      ).join('');
+    }
   }
 
   function openAll() {
-    var platforms = buildLinks();
-    var count = 0;
-    Object.values(platforms).forEach(function(links) {
-      links.forEach(function(l) {
-        if (count < 20) { setTimeout(function(){ window.open(l.url,'_blank'); }, count*200); count++; }
-      });
-    });
+    const platforms = buildLinks();
+    let count = 0;
+    for (const links of Object.values(platforms)) {
+      for (const l of links) {
+        setTimeout(() => window.open(l.url, '_blank'), count * 150);
+        count++;
+        if (count > 20) break; // safety
+      }
+    }
   }
 
+  // Initial render
   renderLinks();
 </script>
 
