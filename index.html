@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html lang="fr" style="background:#0d0f14; color:#e8eaf0;">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Job Search Bot — Ingénieure Matériaux Suisse</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Job Search Bot — Ingenieure Materiaux Suisse Romande</title>
 <style>
   :root {
     --bg: #0d0f14;
@@ -15,1047 +14,1320 @@
     --accent: #5af2b0;
     --accent2: #4ecdc4;
     --accent3: #f7b731;
-    --red: #ff6b6b;
+    --accent4: #ff9f43;
+    --accent5: #ee5a24;
+    --accent6: #a29bfe;
+    --accent7: #fd79a8;
     --text: #e8eaf0;
     --muted: #7a8099;
     --card-hover: #1e2435;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --serif: Georgia, "Times New Roman", serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Monaco, Consolas, monospace;
   }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); min-height: 100vh; overflow-x: hidden; }
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: linear-gradient(rgba(90,242,176,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(90,242,176,0.025) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none; z-index: 0;
+  }
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
 
-- { box-sizing: border-box; margin: 0; padding: 0; }
+/* ── Header ── */
+header { padding: 48px 0 32px; border-bottom: 1px solid var(–border); margin-bottom: 40px; }
+.badge { background: rgba(90,242,176,0.1); border: 1px solid rgba(90,242,176,0.3); color: var(–accent); font-family: var(–mono); font-size: 11px; letter-spacing: 2px; padding: 4px 12px; border-radius: 2px; text-transform: uppercase; display: inline-block; margin-bottom: 16px; }
+h1 { font-family: var(–serif); font-size: clamp(28px, 5vw, 50px); font-weight: 900; line-height: 1.1; color: #fff; margin-bottom: 8px; }
+h1 span { color: var(–accent); }
+.subtitle { color: var(–muted); font-size: 15px; max-width: 600px; line-height: 1.6; }
+.stats-row { display: flex; gap: 36px; margin-top: 32px; flex-wrap: wrap; }
+.stat { display: flex; flex-direction: column; gap: 4px; }
+.stat-num { font-family: var(–mono); font-size: 30px; font-weight: 600; color: var(–accent); line-height: 1; }
+.stat-label { font-size: 11px; color: var(–muted); letter-spacing: 1px; text-transform: uppercase; font-family: var(–mono); }
 
-body {
-background: #0d0f14 !important;
-color: #e8eaf0 !important;
-font-family: ‘DM Sans’, sans-serif;
-min-height: 100vh;
-overflow-x: hidden;
-}
+/* ── Filters ── */
+.filters-section { background: var(–surface); border: 1px solid var(–border); border-radius: 8px; padding: 24px; margin-bottom: 32px; }
+.filters-title { font-family: var(–mono); font-size: 11px; letter-spacing: 2px; color: var(–muted); text-transform: uppercase; margin-bottom: 20px; }
+.filter-group { margin-bottom: 20px; }
+.filter-group:last-child { margin-bottom: 0; }
+.filter-group-label { font-family: var(–mono); font-size: 10px; letter-spacing: 1.5px; color: var(–muted); text-transform: uppercase; margin-bottom: 10px; display: block; }
+.chips-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { background: var(–surface2); border: 1px solid var(–border); border-radius: 4px; padding: 7px 14px; font-family: var(–mono); font-size: 12px; color: var(–text); cursor: pointer; transition: all 0.15s; user-select: none; }
+.chip.active { background: rgba(90,242,176,0.12); border-color: rgba(90,242,176,0.4); color: var(–accent); }
+.chip:hover { border-color: var(–accent); }
+.canton-chip { background: var(–surface2); border: 1px solid var(–border); border-radius: 4px; padding: 7px 14px; font-size: 12px; font-family: var(–sans); color: var(–text); cursor: pointer; transition: all 0.15s; user-select: none; }
+.canton-chip.active { background: rgba(247,183,49,0.12); border-color: rgba(247,183,49,0.4); color: var(–accent3); }
+.canton-chip:hover { border-color: var(–accent3); }
+.lang-btn { background: var(–surface2); border: 1px solid var(–border); border-radius: 4px; padding: 7px 14px; font-size: 12px; color: var(–text); cursor: pointer; transition: all 0.15s; user-select: none; }
+.lang-btn.active { background: rgba(78,205,196,0.12); border-color: rgba(78,205,196,0.4); color: var(–accent2); }
 
-/* Grid background */
-body::before {
-content: ‘’;
-position: fixed;
-inset: 0;
-background-image:
-linear-gradient(rgba(90,242,176,0.03) 1px, transparent 1px),
-linear-gradient(90deg, rgba(90,242,176,0.03) 1px, transparent 1px);
-background-size: 40px 40px;
-pointer-events: none;
-z-index: 0;
-}
+/* ── Nav tabs ── */
+.sector-nav { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid var(–border); }
+.sector-tab { background: var(–surface); border: 1px solid var(–border); border-radius: 4px; padding: 8px 16px; font-size: 12px; font-family: var(–mono); color: var(–muted); cursor: pointer; transition: all 0.15s; text-decoration: none; display: inline-block; }
+.sector-tab:hover { border-color: var(–accent); color: var(–accent); }
 
-.container {
-max-width: 1200px;
-margin: 0 auto;
-padding: 0 24px;
-position: relative;
-z-index: 1;
-}
+/* ── Open all ── */
+.open-all-section { background: linear-gradient(135deg, rgba(90,242,176,0.07), rgba(78,205,196,0.07)); border: 1px solid rgba(90,242,176,0.2); border-radius: 8px; padding: 24px; margin-bottom: 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+.open-all-text h3 { font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 4px; }
+.open-all-text p { font-size: 13px; color: var(–muted); }
+.btn-open-all { background: var(–accent); color: #000; border: none; padding: 12px 28px; border-radius: 4px; font-weight: 700; font-size: 14px; font-family: var(–sans); cursor: pointer; transition: all 0.15s; white-space: nowrap; }
+.btn-open-all:hover { background: #7dffc8; transform: translateY(-1px); }
 
-/* Header */
-header {
-padding: 48px 0 32px;
-border-bottom: 1px solid #252a3a;
-margin-bottom: 40px;
-}
+/* ── Section headers ── */
+.section-block { margin-bottom: 48px; }
+.section-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px; margin-top: 48px; padding-top: 16px; }
+.section-head:first-child { margin-top: 0; padding-top: 0; }
+.section-icon { font-size: 18px; }
+.section-label { font-family: var(–mono); font-size: 12px; letter-spacing: 2px; color: var(–muted); text-transform: uppercase; }
+.section-title { font-size: 20px; font-weight: 700; color: #fff; font-family: var(–serif); margin-bottom: 4px; }
+.section-desc { font-size: 13px; color: var(–muted); margin-bottom: 20px; line-height: 1.6; max-width: 800px; }
 
-.header-top {
-display: flex;
-align-items: flex-start;
-justify-content: space-between;
-flex-wrap: wrap;
-gap: 16px;
-}
+/* ── Grids ── */
+.companies-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; margin-bottom: 16px; }
+.companies-grid-wide { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; margin-bottom: 16px; }
 
-.badge {
-background: rgba(90,242,176,0.1);
-border: 1px solid rgba(90,242,176,0.3);
-color: #5af2b0;
-font-family: ‘DM Mono’, monospace;
-font-size: 11px;
-letter-spacing: 2px;
-padding: 4px 12px;
-border-radius: 2px;
-text-transform: uppercase;
-display: inline-block;
-margin-bottom: 12px;
-}
+/* ── Cards ── */
+.company-card { background: var(–surface); border: 1px solid var(–border); border-radius: 8px; padding: 18px 20px; transition: all 0.18s; position: relative; overflow: hidden; }
+.company-card::before { content: ‘’; position: absolute; top: 0; left: 0; right: 0; height: 2px; opacity: 0; transition: opacity 0.2s; }
+.company-card:hover { background: var(–card-hover); transform: translateY(-2px); }
+.company-card:hover::before { opacity: 1; }
 
-h1 {
-font-family: ‘Playfair Display’, serif;
-font-size: clamp(32px, 5vw, 56px);
-font-weight: 900;
-line-height: 1.05;
-color: #fff;
-margin-bottom: 8px;
-}
+.card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
+.company-name { font-size: 15px; font-weight: 700; color: #fff; font-family: var(–sans); line-height: 1.2; }
+.company-location { font-family: var(–mono); font-size: 10px; color: var(–muted); letter-spacing: 1px; white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
+.company-desc { font-size: 12px; color: var(–muted); line-height: 1.5; margin-bottom: 12px; }
+.card-links { display: flex; gap: 8px; flex-wrap: wrap; }
 
-h1 span {
-color: #5af2b0;
-}
+.btn-careers { display: inline-flex; align-items: center; gap: 4px; padding: 6px 12px; border-radius: 3px; font-size: 11px; font-family: var(–mono); text-decoration: none; transition: all 0.15s; border: 1px solid; white-space: nowrap; cursor: pointer; }
+.btn-careers:hover { transform: translateY(-1px); }
 
-.subtitle {
-color: #7a8099;
-font-size: 15px;
-max-width: 500px;
-line-height: 1.6;
-}
+/* Color variants per sector */
+.c-watch  { –clr: #5af2b0; }
+.c-pharma { –clr: #4ecdc4; }
+.c-chem   { –clr: #f7b731; }
+.c-mech   { –clr: #ff9f43; }
+.c-medtech{ –clr: #a29bfe; }
+.c-food   { –clr: #fd79a8; }
+.c-energy { –clr: #74b9ff; }
+.c-micro  { –clr: #55efc4; }
+.c-defense{ –clr: #e17055; }
+.c-search { –clr: #5af2b0; }
 
-.stats-row {
-display: flex;
-gap: 32px;
-margin-top: 32px;
-flex-wrap: wrap;
-}
+.company-card.c-watch::before  { background: linear-gradient(90deg, #5af2b0, #4ecdc4); }
+.company-card.c-pharma::before { background: linear-gradient(90deg, #4ecdc4, #74b9ff); }
+.company-card.c-chem::before   { background: linear-gradient(90deg, #f7b731, #ff9f43); }
+.company-card.c-mech::before   { background: linear-gradient(90deg, #ff9f43, #e17055); }
+.company-card.c-medtech::before{ background: linear-gradient(90deg, #a29bfe, #fd79a8); }
+.company-card.c-food::before   { background: linear-gradient(90deg, #fd79a8, #f7b731); }
+.company-card.c-energy::before { background: linear-gradient(90deg, #74b9ff, #5af2b0); }
+.company-card.c-micro::before  { background: linear-gradient(90deg, #55efc4, #4ecdc4); }
+.company-card.c-defense::before{ background: linear-gradient(90deg, #e17055, #f7b731); }
+.company-card.c-search::before { background: linear-gradient(90deg, #5af2b0, #a29bfe); }
 
-.stat {
-display: flex;
-flex-direction: column;
-gap: 2px;
-}
+.btn-careers { background: rgba(var(–clr-rgb, 90,242,176),0.08); color: var(–clr, var(–accent)); border-color: rgba(var(–clr-rgb, 90,242,176),0.3); }
+.btn-careers:hover { background: rgba(var(–clr-rgb, 90,242,176),0.18); }
 
-.stat-num {
-font-family: ‘DM Mono’, monospace;
-font-size: 28px;
-font-weight: 500;
-color: #5af2b0;
-line-height: 1;
-}
+/* Simplified — just use accent color for all buttons */
+.btn-c { background: rgba(90,242,176,0.1); color: var(–accent); border: 1px solid rgba(90,242,176,0.3); }
+.btn-c:hover { background: rgba(90,242,176,0.2); }
+.btn-p { background: rgba(78,205,196,0.1); color: var(–accent2); border: 1px solid rgba(78,205,196,0.3); }
+.btn-p:hover { background: rgba(78,205,196,0.2); }
+.btn-y { background: rgba(247,183,49,0.1); color: var(–accent3); border: 1px solid rgba(247,183,49,0.3); }
+.btn-y:hover { background: rgba(247,183,49,0.2); }
+.btn-o { background: rgba(255,159,67,0.1); color: var(–accent4); border: 1px solid rgba(255,159,67,0.3); }
+.btn-o:hover { background: rgba(255,159,67,0.2); }
+.btn-v { background: rgba(162,155,254,0.1); color: var(–accent6); border: 1px solid rgba(162,155,254,0.3); }
+.btn-v:hover { background: rgba(162,155,254,0.2); }
+.btn-r { background: rgba(253,121,168,0.1); color: var(–accent7); border: 1px solid rgba(253,121,168,0.3); }
+.btn-r:hover { background: rgba(253,121,168,0.2); }
+.btn-b { background: rgba(116,185,255,0.1); color: #74b9ff; border: 1px solid rgba(116,185,255,0.3); }
+.btn-b:hover { background: rgba(116,185,255,0.2); }
 
-.stat-label {
-font-size: 11px;
-color: #7a8099;
-letter-spacing: 1px;
-text-transform: uppercase;
-}
+.size-tag { font-family: var(–mono); font-size: 9px; letter-spacing: 1px; padding: 2px 6px; border-radius: 2px; text-transform: uppercase; }
+.sz-L { background: rgba(90,242,176,0.12); color: var(–accent); border: 1px solid rgba(90,242,176,0.2); }
+.sz-M { background: rgba(247,183,49,0.12); color: var(–accent3); border: 1px solid rgba(247,183,49,0.2); }
+.sz-S { background: rgba(162,155,254,0.12); color: var(–accent6); border: 1px solid rgba(162,155,254,0.2); }
 
-/* Filters */
-.filters-section {
-background: #141720;
-border: 1px solid #252a3a;
-border-radius: 8px;
-padding: 24px;
-margin-bottom: 32px;
-}
+/* Portails generaux */
+.search-section { background: var(–surface); border: 1px solid var(–border); border-radius: 8px; padding: 24px; margin-bottom: 16px; }
+.search-section h4 { font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 4px; }
+.search-section p { font-size: 13px; color: var(–muted); margin-bottom: 14px; }
+.search-links-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.s-btn { display: inline-flex; align-items: center; gap: 4px; padding: 8px 14px; border-radius: 4px; font-size: 12px; font-family: var(–mono); text-decoration: none; transition: all 0.15s; border: 1px solid rgba(90,242,176,0.3); background: rgba(90,242,176,0.1); color: var(–accent); }
+.s-btn:hover { background: rgba(90,242,176,0.2); }
 
-.filters-title {
-font-family: ‘DM Mono’, monospace;
-font-size: 11px;
-letter-spacing: 2px;
-color: #7a8099;
-text-transform: uppercase;
-margin-bottom: 16px;
-}
+.divider { border: none; border-top: 1px solid var(–border); margin: 48px 0 0; }
+.anchor-target { display: block; margin-top: -80px; padding-top: 80px; }
 
-.keyword-chips {
-display: flex;
-flex-wrap: wrap;
-gap: 8px;
-margin-bottom: 20px;
-}
+footer { padding: 32px 0; border-top: 1px solid var(–border); text-align: center; color: var(–muted); font-size: 12px; font-family: var(–mono); margin-top: 48px; }
 
-.chip {
-background: #1c2030;
-border: 1px solid #252a3a;
-border-radius: 4px;
-padding: 6px 14px;
-font-family: ‘DM Mono’, monospace;
-font-size: 12px;
-color: #e8eaf0 !important;
-cursor: pointer;
-transition: all 0.15s;
-user-select: none;
-}
-
-.chip.active {
-background: rgba(90,242,176,0.12);
-border-color: rgba(90,242,176,0.4);
-color: #5af2b0;
-}
-
-.chip:hover {
-border-color: #5af2b0;
-}
-
-.canton-chips {
-display: flex;
-flex-wrap: wrap;
-gap: 8px;
-}
-
-.canton-chip {
-background: #1c2030;
-border: 1px solid #252a3a;
-border-radius: 4px;
-padding: 6px 14px;
-font-size: 12px;
-color: #e8eaf0 !important;
-cursor: pointer;
-transition: all 0.15s;
-user-select: none;
-}
-
-.canton-chip.active {
-background: rgba(247,183,49,0.12);
-border-color: rgba(247,183,49,0.4);
-color: #f7b731;
-}
-
-.canton-chip:hover {
-border-color: #f7b731;
-}
-
-.filter-actions {
-display: flex;
-gap: 12px;
-margin-top: 20px;
-flex-wrap: wrap;
-align-items: center;
-}
-
-.lang-toggle {
-display: flex;
-gap: 8px;
-align-items: center;
-}
-
-.lang-btn {
-background: #1c2030;
-border: 1px solid #252a3a;
-border-radius: 4px;
-padding: 6px 14px;
-font-size: 12px;
-color: #e8eaf0 !important;
-cursor: pointer;
-transition: all 0.15s;
-}
-
-.lang-btn.active {
-background: rgba(78,205,196,0.12);
-border-color: rgba(78,205,196,0.4);
-color: #4ecdc4;
-}
-
-/* Sections */
-.section-label {
-font-family: ‘DM Mono’, monospace;
-font-size: 11px;
-letter-spacing: 2px;
-color: #7a8099;
-text-transform: uppercase;
-margin-bottom: 16px;
-margin-right: 16px;
-display: inline-block;
-}
-
-/* Platform grid */
-.platforms-grid {
-display: grid;
-grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-gap: 16px;
-margin-bottom: 40px;
-}
-
-.platform-card {
-background: #141720;
-border: 1px solid #252a3a;
-border-radius: 8px;
-padding: 24px;
-transition: all 0.2s;
-position: relative;
-overflow: hidden;
-}
-
-.platform-card::before {
-content: ‘’;
-position: absolute;
-top: 0; left: 0; right: 0;
-height: 2px;
-background: linear-gradient(90deg, #5af2b0, #4ecdc4);
-opacity: 0;
-transition: opacity 0.2s;
-}
-
-.platform-card:hover {
-background: #1e2435;
-border-color: rgba(90,242,176,0.2);
-transform: translateY(-2px);
-}
-
-.platform-card:hover::before { opacity: 1; }
-
-.platform-header {
-display: flex;
-align-items: center;
-justify-content: space-between;
-margin-bottom: 12px;
-}
-
-.platform-name {
-font-size: 16px;
-font-weight: 600;
-color: #fff;
-}
-
-.platform-type {
-font-family: ‘DM Mono’, monospace;
-font-size: 10px;
-letter-spacing: 1.5px;
-padding: 3px 8px;
-border-radius: 2px;
-text-transform: uppercase;
-}
-
-.type-general {
-background: rgba(90,242,176,0.1);
-color: #5af2b0;
-border: 1px solid rgba(90,242,176,0.2);
-}
-
-.type-company {
-background: rgba(78,205,196,0.1);
-color: #4ecdc4;
-border: 1px solid rgba(78,205,196,0.2);
-}
-
-.type-sector {
-background: rgba(247,183,49,0.1);
-color: #f7b731;
-border: 1px solid rgba(247,183,49,0.2);
-}
-
-.platform-desc {
-font-size: 13px;
-color: #7a8099;
-line-height: 1.5;
-margin-bottom: 16px;
-}
-
-.platform-links {
-display: flex;
-gap: 8px;
-flex-wrap: wrap;
-}
-
-.search-btn {
-display: inline-flex;
-align-items: center;
-gap: 6px;
-background: transparent;
-border: 1px solid #252a3a;
-color: #e8eaf0 !important;
-padding: 8px 16px;
-border-radius: 4px;
-font-size: 12px;
-font-family: ‘DM Mono’, monospace;
-text-decoration: none;
-transition: all 0.15s;
-cursor: pointer;
-}
-
-.search-btn:hover {
-border-color: #5af2b0;
-color: #5af2b0;
-background: rgba(90,242,176,0.05);
-}
-
-.search-btn.primary {
-background: rgba(90,242,176,0.1);
-border-color: rgba(90,242,176,0.3);
-color: #5af2b0;
-}
-
-.search-btn.primary:hover {
-background: rgba(90,242,176,0.2);
-}
-
-/* Open all button */
-.open-all-section {
-background: linear-gradient(135deg, rgba(90,242,176,0.08), rgba(78,205,196,0.08));
-border: 1px solid rgba(90,242,176,0.2);
-border-radius: 8px;
-padding: 24px;
-margin-bottom: 40px;
-display: flex;
-align-items: center;
-justify-content: space-between;
-flex-wrap: wrap;
-gap: 16px;
-}
-
-.open-all-text h3 {
-font-size: 16px;
-font-weight: 600;
-color: #fff;
-margin-bottom: 4px;
-}
-
-.open-all-text p {
-font-size: 13px;
-color: #7a8099;
-}
-
-.btn-open-all {
-background: #5af2b0;
-color: #000;
-border: none;
-padding: 12px 28px;
-border-radius: 4px;
-font-weight: 600;
-font-size: 14px;
-cursor: pointer;
-transition: all 0.15s;
-letter-spacing: 0.5px;
-white-space: nowrap;
-}
-
-.btn-open-all:hover {
-background: #7dffc8;
-transform: translateY(-1px);
-}
-
-/* Tips section */
-.tips-grid {
-display: grid;
-grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-gap: 16px;
-margin-bottom: 48px;
-}
-
-.tip-card {
-background: #141720;
-border: 1px solid #252a3a;
-border-radius: 8px;
-padding: 20px;
-}
-
-.tip-icon {
-font-size: 24px;
-margin-bottom: 10px;
-display: block;
-}
-
-.tip-title {
-font-size: 14px;
-font-weight: 600;
-color: #fff;
-margin-bottom: 8px;
-}
-
-.tip-text {
-font-size: 13px;
-color: #7a8099;
-line-height: 1.6;
-}
-
-/* URL builder */
-.url-builder {
-background: #141720;
-border: 1px solid #252a3a;
-border-radius: 8px;
-padding: 24px;
-margin-bottom: 40px;
-}
-
-.url-display {
-background: #0d0f14 !important;
-border: 1px solid #252a3a;
-border-radius: 4px;
-padding: 12px 16px;
-font-family: ‘DM Mono’, monospace;
-font-size: 12px;
-color: #5af2b0;
-word-break: break-all;
-margin: 16px 0;
-min-height: 48px;
-}
-
-.divider {
-border: none;
-border-top: 1px solid #252a3a;
-margin: 40px 0;
-}
-
-footer {
-padding: 32px 0;
-border-top: 1px solid #252a3a;
-text-align: center;
-color: #7a8099;
-font-size: 12px;
-font-family: ‘DM Mono’, monospace;
-}
-
-/* Animations */
-@keyframes fadeIn {
-from { opacity: 0; transform: translateY(16px); }
-to { opacity: 1; transform: translateY(0); }
-}
-
-.platform-card { animation: fadeIn 0.4s ease both; }
-.platform-card:nth-child(1) { animation-delay: 0.05s; }
-.platform-card:nth-child(2) { animation-delay: 0.1s; }
-.platform-card:nth-child(3) { animation-delay: 0.15s; }
-.platform-card:nth-child(4) { animation-delay: 0.2s; }
-.platform-card:nth-child(5) { animation-delay: 0.25s; }
-.platform-card:nth-child(6) { animation-delay: 0.3s; }
-.platform-card:nth-child(7) { animation-delay: 0.35s; }
-.platform-card:nth-child(8) { animation-delay: 0.4s; }
-
-.hidden { display: none; }
+@keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
 </style>
 
 </head>
 <body>
 <div class="container">
 
-  <header>
-    <div class="badge">▸ Job Search Bot v1.0</div>
-    <div class="header-top">
-      <div>
-        <h1>Offres d'emploi<br><span>Ingénieure Matériaux</span></h1>
-        <p class="subtitle">Agrégateur de recherches configuré pour la Suisse romande — FR &amp; EN — Matériaux, Chimie, Engineering</p>
-      </div>
-    </div>
-    <div class="stats-row">
-      <div class="stat">
-        <span class="stat-num" id="platformCount">24</span>
-        <span class="stat-label">Plateformes</span>
-      </div>
-      <div class="stat">
-        <span class="stat-num">7</span>
-        <span class="stat-label">Cantons ciblés</span>
-      </div>
-      <div class="stat">
-        <span class="stat-num">8</span>
-        <span class="stat-label">Mots-clés</span>
-      </div>
-    </div>
-  </header>
+<!-- HEADER -->
 
-  <!-- Filters -->
+<header>
+  <div class="badge">&#9658; Job Search Bot v2.0 &#8212; Edition exhaustive</div>
+  <h1>Employeurs Suisse Romande<br><span>Ingenieure Materiaux / R&amp;D</span></h1>
+  <p class="subtitle">Repertoire exhaustif d'employeurs potentiels en Suisse romande pour un profil materiaux, mecanique, qualite et R&amp;D &#8212; 7 cantons, 10 secteurs</p>
+  <div class="stats-row">
+    <div class="stat"><span class="stat-num">80+</span><span class="stat-label">Entreprises</span></div>
+    <div class="stat"><span class="stat-num">10</span><span class="stat-label">Secteurs</span></div>
+    <div class="stat"><span class="stat-num">7</span><span class="stat-label">Cantons</span></div>
+    <div class="stat"><span class="stat-num">FR+EN</span><span class="stat-label">Langues</span></div>
+  </div>
+</header>
 
-  <div class="filters-section">
-    <div class="filters-title">⚙ Configuration de la recherche</div>
+<!-- FILTERS (portails generaux) -->
 
-```
-<div style="margin-bottom:16px">
-  <div class="section-label">Mots-clés</div>
-  <div class="keyword-chips" id="keywordChips">
-    <div class="chip active" data-kw="ingénieur">ingénieur</div>
-    <div class="chip active" data-kw="master">master</div>
-    <div class="chip active" data-kw="matériaux">matériaux</div>
-    <div class="chip active" data-kw="chimie">chimie</div>
-    <div class="chip active" data-kw="engineer">engineer</div>
-    <div class="chip active" data-kw="chemistry">chemistry</div>
-    <div class="chip active" data-kw="materials">materials</div>
-    <div class="chip active" data-kw="sustainable">sustainable</div>
-  </div>
-</div>
-
-<div style="margin-bottom:16px">
-  <div class="section-label">Cantons</div>
-  <div class="canton-chips" id="cantonChips">
-    <div class="canton-chip active" data-canton="Genève">📍 Genève</div>
-    <div class="canton-chip active" data-canton="Vaud">📍 Vaud</div>
-    <div class="canton-chip active" data-canton="Valais">📍 Valais</div>
-    <div class="canton-chip active" data-canton="Fribourg">📍 Fribourg</div>
-    <div class="canton-chip active" data-canton="Neuchâtel">📍 Neuchâtel</div>
-    <div class="canton-chip active" data-canton="Berne">📍 Berne</div>
-    <div class="canton-chip active" data-canton="Jura">📍 Jura</div>
-  </div>
-</div>
-
-<div>
-  <div class="section-label">Langues</div>
-  <div class="lang-toggle">
-    <div class="lang-btn active" data-lang="fr">🇫🇷 Français</div>
-    <div class="lang-btn active" data-lang="en">🇬🇧 English</div>
-  </div>
-</div>
-```
-
-  </div>
-
-  <!-- Open All -->
-
-  <div class="open-all-section">
-    <div class="open-all-text">
-      <h3>Lancer toutes les recherches</h3>
-      <p>Ouvre tous les liens de recherche configurés dans de nouveaux onglets simultanément</p>
-    </div>
-    <button class="btn-open-all" onclick="openAll()">▶ Tout ouvrir en un clic</button>
-  </div>
-
-  <!-- Platforms -->
-
-  <div style="margin-bottom:16px;">
-    <span class="section-label">Plateformes générales</span>
-  </div>
-  <div class="platforms-grid" id="generalGrid">
-
-```
-<div class="platform-card" data-category="general">
-  <div class="platform-header">
-    <span class="platform-name">Jobs.ch</span>
-    <span class="platform-type type-general">Général</span>
-  </div>
-  <p class="platform-desc">Le plus grand portail d'emploi suisse. Excellent coverage Suisse romande.</p>
-  <div class="platform-links" id="links-jobsch"></div>
-</div>
-
-<div class="platform-card" data-category="general">
-  <div class="platform-header">
-    <span class="platform-name">Indeed Suisse</span>
-    <span class="platform-type type-general">Général</span>
-  </div>
-  <p class="platform-desc">Moteur d'emploi mondial avec de nombreuses offres suisses. Filtre par langue disponible.</p>
-  <div class="platform-links" id="links-indeed"></div>
-</div>
-
-<div class="platform-card" data-category="general">
-  <div class="platform-header">
-    <span class="platform-name">LinkedIn Jobs</span>
-    <span class="platform-type type-general">Général</span>
-  </div>
-  <p class="platform-desc">Réseau professionnel + offres. Idéal pour le networking en parallèle.</p>
-  <div class="platform-links" id="links-linkedin"></div>
-</div>
-
-<div class="platform-card" data-category="general">
-  <div class="platform-header">
-    <span class="platform-name">Jobup.ch</span>
-    <span class="platform-type type-general">Général</span>
-  </div>
-  <p class="platform-desc">Portail suisse romand par excellence — très bien orienté FR.</p>
-  <div class="platform-links" id="links-jobup"></div>
-</div>
-
-<div class="platform-card" data-category="general">
-  <div class="platform-header">
-    <span class="platform-name">ORP / RAV</span>
-    <span class="platform-type type-general">Officiel</span>
-  </div>
-  <p class="platform-desc">Job-Room.ch — portail officiel du SECO. Offres avec contributions obligatoires.</p>
-  <div class="platform-links" id="links-jobroom"></div>
-</div>
-
-<div class="platform-card" data-category="general">
-  <div class="platform-header">
-    <span class="platform-name">Glassdoor CH</span>
-    <span class="platform-type type-general">Général</span>
-  </div>
-  <p class="platform-desc">Offres + avis d'employés. Utile pour évaluer les entreprises.</p>
-  <div class="platform-links" id="links-glassdoor"></div>
-</div>
-```
-
-  </div>
-
-  <div style="margin-bottom:16px; margin-top:8px;">
-    <span class="section-label">Plateformes spécialisées</span>
-  </div>
-  <div class="platforms-grid">
-
-```
-<div class="platform-card" data-category="sector">
-  <div class="platform-header">
-    <span class="platform-name">EurAxess</span>
-    <span class="platform-type type-sector">R&D / Académique</span>
-  </div>
-  <p class="platform-desc">Postes de chercheurs et ingénieurs financés par la Commission Européenne. Top pour matériaux.</p>
-  <div class="platform-links" id="links-euraxess"></div>
-</div>
-
-<div class="platform-card" data-category="sector">
-  <div class="platform-header">
-    <span class="platform-name">EPFL / UNIL Carrières</span>
-    <span class="platform-type type-sector">Académique</span>
-  </div>
-  <p class="platform-desc">Postes académiques, postdocs et ingénieurs dans les labos. EPFL = leader matériaux CH.</p>
-  <div class="platform-links" id="links-epfl"></div>
-</div>
-
-<div class="platform-card" data-category="sector">
-  <div class="platform-header">
-    <span class="platform-name">Helveticajob.ch</span>
-    <span class="platform-type type-sector">Spécialisé CH</span>
-  </div>
-  <p class="platform-desc">Offres d'emploi suisses dans l'industrie technique et chimique.</p>
-  <div class="platform-links" id="links-helvetica"></div>
-</div>
-
-<div class="platform-card" data-category="sector">
-  <div class="platform-header">
-    <span class="platform-name">Emploi-environnement.com</span>
-    <span class="platform-type type-sector">Durabilité</span>
-  </div>
-  <p class="platform-desc">Emplois dans l'environnement, la chimie verte, le développement durable.</p>
-  <div class="platform-links" id="links-enviro"></div>
-</div>
-```
-
-  </div>
-
-  <div style="margin-bottom:16px; margin-top:8px;">
-    <span class="section-label">Grands employeurs — portails directs</span>
-  </div>
-  <div class="platforms-grid">
-
-```
-<div class="platform-card" data-category="company">
-  <div class="platform-header">
-    <span class="platform-name">Sika AG</span>
-    <span class="platform-type type-company">Entreprise</span>
-  </div>
-  <p class="platform-desc">Leader mondial des matériaux de construction — HQ Baar, nombreux labos CH.</p>
-  <div class="platform-links" id="links-sika"></div>
-</div>
-
-<div class="platform-card" data-category="company">
-  <div class="platform-header">
-    <span class="platform-name">Lonza Group</span>
-    <span class="platform-type type-company">Entreprise</span>
-  </div>
-  <p class="platform-desc">Chimie fine et biosciences — site majeur à Viège (Valais).</p>
-  <div class="platform-links" id="links-lonza"></div>
-</div>
-
-<div class="platform-card" data-category="company">
-  <div class="platform-header">
-    <span class="platform-name">Firmenich / dsm-firmenich</span>
-    <span class="platform-type type-company">Entreprise</span>
-  </div>
-  <p class="platform-desc">Parfums, nutrition, chimie — HQ à Genève / Kaiseraugst.</p>
-  <div class="platform-links" id="links-firmenich"></div>
-</div>
-
-<div class="platform-card" data-category="company">
-  <div class="platform-header">
-    <span class="platform-name">CERN</span>
-    <span class="platform-type type-company">Recherche</span>
-  </div>
-  <p class="platform-desc">Postes d'ingénieurs matériaux, cryogénie, etc. — Genève. En anglais.</p>
-  <div class="platform-links" id="links-cern"></div>
-</div>
-
-<div class="platform-card" data-category="company">
-  <div class="platform-header">
-    <span class="platform-name">Bobst Group</span>
-    <span class="platform-type type-company">Entreprise</span>
-  </div>
-  <p class="platform-desc">Machines d'emballage, matériaux — HQ à Mex (Vaud).</p>
-  <div class="platform-links" id="links-bobst"></div>
-</div>
-
-<div class="platform-card" data-category="company">
-  <div class="platform-header">
-    <span class="platform-name">Neste / Clariant</span>
-    <span class="platform-type type-company">Entreprise</span>
-  </div>
-  <p class="platform-desc">Chimie de spécialité, matériaux durables — présence en Suisse romande.</p>
-  <div class="platform-links" id="links-clariant"></div>
-</div>
-```
-
-  </div>
-
-  <!-- Horlogerie & Luxe -->
-
-  <hr class="divider">
-  <div style="margin-bottom:8px;">
-    <span class="section-label">⌚ Horlogerie & Luxe — Carrières directes</span>
-    <span style="font-size:12px; color:#7a8099; font-family:'DM Mono',monospace;">Liens directs vers les sites carrières — sans filtre mots-clés, filtre Suisse</span>
-  </div>
-  <div class="platforms-grid" style="margin-bottom:40px;">
-
-```
-<div class="platform-card">
-  <div class="platform-header">
-    <span class="platform-name">Rolex</span>
-    <span class="platform-type type-company">Horlogerie</span>
-  </div>
-  <p class="platform-desc">HQ Genève + sites Plan-les-Ouates, Chêne-Bourg, Bienne — ingénieurs matériaux, métallurgie, R&D boîtiers et bracelets.</p>
-  <div class="platform-links">
-    <a class="search-btn primary" href="https://www.carrieres-rolex.com/" target="_blank" rel="noopener">↗ carrieres-rolex.com</a>
-  </div>
-</div>
-
-<div class="platform-card">
-  <div class="platform-header">
-    <span class="platform-name">Richemont</span>
-    <span class="platform-type type-company">Luxe / Groupe</span>
-  </div>
-  <p class="platform-desc">Groupe (Cartier, IWC, Piaget, Van Cleef…) — HQ Bellevue (GE). Nombreux postes techniques en Suisse.</p>
-  <div class="platform-links">
-    <a class="search-btn primary" href="https://www.richemont.com/talent/" target="_blank" rel="noopener">↗ Richemont Talent</a>
-  </div>
-</div>
-
-<div class="platform-card">
-  <div class="platform-header">
-    <span class="platform-name">Swatch Group</span>
-    <span class="platform-type type-company">Horlogerie</span>
-  </div>
-  <p class="platform-desc">Groupe (Omega, Longines, Breguet, Blancpain…) — HQ Biel/Bienne. Fort besoin en ingénieurs matériaux et chimistes.</p>
-  <div class="platform-links">
-    <a class="search-btn primary" href="https://www.swatchgroup.com/en/job-finder" target="_blank" rel="noopener">↗ Job Finder CH</a>
-  </div>
-</div>
-
-<div class="platform-card">
-  <div class="platform-header">
-    <span class="platform-name">Patek Philippe</span>
-    <span class="platform-type type-company">Horlogerie</span>
-  </div>
-  <p class="platform-desc">Manufacture à Plan-les-Ouates (GE) — R&D matériaux de pointe, filière technique et R&D-Technique.</p>
-  <div class="platform-links">
-    <a class="search-btn primary" href="https://careers.patek.com/" target="_blank" rel="noopener">↗ careers.patek.com</a>
-  </div>
-</div>
-
-<div class="platform-card">
-  <div class="platform-header">
-    <span class="platform-name">Audemars Piguet</span>
-    <span class="platform-type type-company">Horlogerie</span>
-  </div>
-  <p class="platform-desc">Manufacture au Brassus (VD) + site Meyrin (GE) — innovations matériaux : céramique, carbone forgé, tantale.</p>
-  <div class="platform-links">
-    <a class="search-btn primary" href="https://careers.audemarspiguet.com/en/job-listing" target="_blank" rel="noopener">↗ AP Job Listing</a>
-  </div>
-</div>
-
-<div class="platform-card">
-  <div class="platform-header">
-    <span class="platform-name">Chopard</span>
-    <span class="platform-type type-company">Horlogerie / Joaillerie</span>
-  </div>
-  <p class="platform-desc">Manufacture à Meyrin (GE) — or éthique, matériaux certifiés, R&D joaillerie et horlogerie.</p>
-  <div class="platform-links">
-    <a class="search-btn primary" href="https://www.chopard.com/fr-fr/careers.html" target="_blank" rel="noopener">↗ Chopard Careers</a>
-  </div>
-</div>
-
-<div class="platform-card">
-  <div class="platform-header">
-    <span class="platform-name">Chanel</span>
-    <span class="platform-type type-company">Luxe</span>
-  </div>
-  <p class="platform-desc">Présence en Suisse (Genève) — R&D, cosmétiques, horlogerie (Chanel Watches). Portail carrières CH.</p>
-  <div class="platform-links">
-    <a class="search-btn primary" href="https://careers.chanel.com/en_CH" target="_blank" rel="noopener">↗ Chanel Careers CH</a>
-  </div>
-</div>
-
-<div class="platform-card">
-  <div class="platform-header">
-    <span class="platform-name">LVMH / Dior</span>
-    <span class="platform-type type-company">Luxe / Groupe</span>
-  </div>
-  <p class="platform-desc">LVMH regroupe Dior, TAG Heuer, Bvlgari, Hublot, Louis Vuitton… Offres groupe + Dior en Suisse.</p>
-  <div class="platform-links">
-    <a class="search-btn primary" href="https://www.lvmh.com/en/join-us/our-job-offers" target="_blank" rel="noopener">↗ LVMH Offres</a>
-    <a class="search-btn" href="https://careers.smartrecruiters.com/LVMH2" target="_blank" rel="noopener">↗ LVMH SmartRecruiters</a>
-  </div>
-</div>
-```
-
-  </div>
-
-  <!-- Tips -->
-
-  <hr class="divider">
-  <div style="margin-bottom:16px;">
-    <span class="section-label">Conseils de recherche</span>
-  </div>
-  <div class="tips-grid">
-    <div class="tip-card">
-      <span class="tip-icon">🔔</span>
-      <div class="tip-title">Activer les alertes email</div>
-      <p class="tip-text">Sur jobs.ch, LinkedIn et Indeed, crée des alertes avec tes mots-clés pour recevoir les nouvelles offres dès leur publication.</p>
-    </div>
-    <div class="tip-card">
-      <span class="tip-icon">🇨🇭</span>
-      <div class="tip-title">Filtre "Suisse romande"</div>
-      <p class="tip-text">Sur jobs.ch et jobup.ch, utilise le filtre région "Romandie" pour cibler tous les cantons francophones d'un coup.</p>
-    </div>
-    <div class="tip-card">
-      <span class="tip-icon">📄</span>
-      <div class="tip-title">CV en 2 versions</div>
-      <p class="tip-text">Prépare un CV en français (pour les offres CH-FR) et un en anglais (CERN, EPFL, multinationales). Le format suisse est sobre, 2 pages max.</p>
-    </div>
-    <div class="tip-card">
-      <span class="tip-icon">🤝</span>
-      <div class="tip-title">Candidatures spontanées</div>
-      <p class="tip-text">En Suisse, les candidatures directes aux entreprises sont très bien reçues. Identifie les RH sur LinkedIn et écris directement.</p>
-    </div>
-    <div class="tip-card">
-      <span class="tip-icon">🔬</span>
-      <div class="tip-title">Réseaux sectoriels</div>
-      <p class="tip-text">SCS (Swiss Chemical Society), Swissmem (industrie mécanique), Swisscleantech pour les postes durabilité — tous publient des offres.</p>
-    </div>
-    <div class="tip-card">
-      <span class="tip-icon">💡</span>
-      <div class="tip-title">Mots-clés bonus</div>
-      <p class="tip-text">Essaie aussi : "polymère", "biomaterials", "surface science", "coating", "composites", "failure analysis", "quality engineer".</p>
+<div class="filters-section">
+  <div class="filters-title">Configuration portails generaux (mots-cles dynamiques)</div>
+  <div class="filter-group">
+    <span class="filter-group-label">Mots-cles</span>
+    <div class="chips-row">
+      <div class="chip active" data-kw="ingenieur">ingenieur</div>
+      <div class="chip active" data-kw="master">master</div>
+      <div class="chip active" data-kw="materiaux">materiaux</div>
+      <div class="chip active" data-kw="chimie">chimie</div>
+      <div class="chip active" data-kw="engineer">engineer</div>
+      <div class="chip active" data-kw="chemistry">chemistry</div>
+      <div class="chip active" data-kw="materials">materials</div>
+      <div class="chip active" data-kw="sustainable">sustainable</div>
     </div>
   </div>
+  <div class="filter-group">
+    <span class="filter-group-label">Cantons</span>
+    <div class="chips-row">
+      <div class="canton-chip active" data-canton="Geneve">Geneve</div>
+      <div class="canton-chip active" data-canton="Vaud">Vaud</div>
+      <div class="canton-chip active" data-canton="Valais">Valais</div>
+      <div class="canton-chip active" data-canton="Fribourg">Fribourg</div>
+      <div class="canton-chip active" data-canton="Neuchatel">Neuchatel</div>
+      <div class="canton-chip active" data-canton="Berne">Berne</div>
+      <div class="canton-chip active" data-canton="Jura">Jura</div>
+    </div>
+  </div>
+  <div class="filter-group">
+    <span class="filter-group-label">Langues</span>
+    <div class="chips-row">
+      <div class="lang-btn active" data-lang="fr">Francais</div>
+      <div class="lang-btn active" data-lang="en">English</div>
+    </div>
+  </div>
+</div>
 
-  <footer>
-    <p>Job Search Bot — Ingénieure Matériaux Suisse Romande &nbsp;·&nbsp; Généré par Claude &nbsp;·&nbsp; Mis à jour à chaque ouverture</p>
-  </footer>
+<!-- OPEN ALL -->
+
+<div class="open-all-section">
+  <div class="open-all-text">
+    <h3>Portails generaux &#8212; lancer toutes les recherches</h3>
+    <p>Ouvre jobs.ch, Indeed, LinkedIn, Jobup, Job-Room avec tes mots-cles configures</p>
+  </div>
+  <button class="btn-open-all" onclick="openAll()">&#9654; Tout ouvrir</button>
+</div>
+
+<!-- PORTAILS GENERAUX -->
+
+<div class="section-block">
+  <div class="section-head"><span class="section-label">Portails generaux</span></div>
+  <div class="companies-grid">
+    <div class="search-section">
+      <h4>Jobs.ch</h4>
+      <p>Premier portail suisse. Excellent en Suisse romande.</p>
+      <div class="search-links-row" id="links-jobsch"></div>
+    </div>
+    <div class="search-section">
+      <h4>Indeed Suisse</h4>
+      <p>Moteur mondial, nombreuses offres suisses.</p>
+      <div class="search-links-row" id="links-indeed"></div>
+    </div>
+    <div class="search-section">
+      <h4>LinkedIn Jobs</h4>
+      <p>Reseau pro + offres &#8212; networking en parallele.</p>
+      <div class="search-links-row" id="links-linkedin"></div>
+    </div>
+    <div class="search-section">
+      <h4>Jobup.ch</h4>
+      <p>Portail romand par excellence.</p>
+      <div class="search-links-row" id="links-jobup"></div>
+    </div>
+    <div class="search-section">
+      <h4>Job-Room SECO</h4>
+      <p>Portail officiel suisse.</p>
+      <div class="search-links-row" id="links-jobroom"></div>
+    </div>
+    <div class="search-section">
+      <h4>EurAxess</h4>
+      <p>R&amp;D et recherche &#8212; excellent pour materiaux.</p>
+      <div class="search-links-row" id="links-euraxess"></div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV RAPIDE -->
+
+<div class="sector-nav">
+  <a class="sector-tab" href="#horlogerie">&#8987; Horlogerie &amp; Luxe</a>
+  <a class="sector-tab" href="#pharma">&#128138; Pharma &amp; Biotech</a>
+  <a class="sector-tab" href="#chimie">&#9878; Chimie &amp; Materiaux</a>
+  <a class="sector-tab" href="#medtech">&#129657; Medtech &amp; Dispositifs</a>
+  <a class="sector-tab" href="#mecanique">&#9881; Mecanique &amp; Machines</a>
+  <a class="sector-tab" href="#micro">&#128300; Microtechnique &amp; Electronique</a>
+  <a class="sector-tab" href="#food">&#127807; Agroalimentaire</a>
+  <a class="sector-tab" href="#energie">&#9889; Energie &amp; Environnement</a>
+  <a class="sector-tab" href="#defense">&#128737; Defense &amp; Aerospatial</a>
+  <a class="sector-tab" href="#recherche">&#127979; Recherche &amp; Instituts</a>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<!-- 1. HORLOGERIE & LUXE -->
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<div id="horlogerie" class="anchor-target"></div>
+<div class="section-head">
+  <span class="section-icon">&#8987;</span>
+  <div>
+    <div class="section-label">Secteur 1</div>
+    <div class="section-title">Horlogerie &amp; Luxe</div>
+  </div>
+</div>
+<p class="section-desc">Arc horloger (GE, VD, NE, JU, BE) &#8212; materiaux avances (ceramique, alliages nobles, traitements de surface), R&amp;D composants, qualite, industrialisation. Profil materiaux tres recherche.</p>
+<div class="companies-grid">
+
+  <div class="company-card c-watch">
+    <div class="card-header">
+      <div><div class="company-name">Rolex SA</div><div class="company-location">GE &#8212; Plan-les-Ouates, Chene-Bourg, Bienne</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Leader horloger mondial. R&amp;D metallurgie, alliages or, traitements surface, qualite production. Env. 9000 employes CH.</p>
+    <div class="card-links"><a class="btn-careers btn-c" href="https://www.carrieres-rolex.com/" target="_blank" rel="noopener">&#8599; carrieres-rolex.com</a></div>
+  </div>
+
+  <div class="company-card c-watch">
+    <div class="card-header">
+      <div><div class="company-name">Patek Philippe</div><div class="company-location">GE &#8212; Plan-les-Ouates</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Manufacture prestige. Materiaux de pointe, alliages proprietaires, ceramique, saphir. R&amp;D technique pointue.</p>
+    <div class="card-links"><a class="btn-careers btn-c" href="https://careers.patek.com/" target="_blank" rel="noopener">&#8599; careers.patek.com</a></div>
+  </div>
+
+  <div class="company-card c-watch">
+    <div class="card-header">
+      <div><div class="company-name">Audemars Piguet</div><div class="company-location">VD &#8212; Le Brassus / GE &#8212; Meyrin</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Innovation materiaux : carbone forge, ceramique ZrO2, tantale, titane grade 5. Postes R&amp;D materiaux et qualite.</p>
+    <div class="card-links"><a class="btn-careers btn-c" href="https://careers.audemarspiguet.com/en/job-listing" target="_blank" rel="noopener">&#8599; AP Careers</a></div>
+  </div>
+
+  <div class="company-card c-watch">
+    <div class="card-header">
+      <div><div class="company-name">Chopard</div><div class="company-location">GE &#8212; Meyrin</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Manufacture horlogerie et joaillerie. Or ethique, alliages precieux, certifications materiaux. Postes R&amp;D et qualite.</p>
+    <div class="card-links"><a class="btn-careers btn-c" href="https://www.chopard.com/fr-fr/careers.html" target="_blank" rel="noopener">&#8599; Chopard Careers</a></div>
+  </div>
+
+  <div class="company-card c-watch">
+    <div class="card-header">
+      <div><div class="company-name">Richemont (groupe)</div><div class="company-location">GE &#8212; Bellevue / VD &#8212; Villars-sur-Glane</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Cartier, IWC, Piaget, Van Cleef, Panerai, Vacheron. Nombreux postes techniques, materiaux, qualite en Suisse romande.</p>
+    <div class="card-links"><a class="btn-careers btn-c" href="https://www.richemont.com/talent/" target="_blank" rel="noopener">&#8599; Richemont Talent</a></div>
+  </div>
+
+  <div class="company-card c-watch">
+    <div class="card-header">
+      <div><div class="company-name">Swatch Group (groupe)</div><div class="company-location">BE &#8212; Biel/Bienne + Romandie</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Omega, Longines, Breguet, Blancpain, ETA, Nivarox. Forte demande en ingenieurs materiaux et chimistes.</p>
+    <div class="card-links"><a class="btn-careers btn-c" href="https://www.swatchgroup.com/en/job-finder" target="_blank" rel="noopener">&#8599; Swatch Group Jobs</a></div>
+  </div>
+
+  <div class="company-card c-watch">
+    <div class="card-header">
+      <div><div class="company-name">Comadur SA</div><div class="company-location">JU &#8212; Boncourt</div></div>
+      <span class="size-tag sz-M">Moyen</span>
+    </div>
+    <p class="company-desc">Filiale Swatch Group. Ceramiques techniques (alumine, zircone), saphir synthetique, composants durs pour l'horlogerie. Tres pertinent materiaux.</p>
+    <div class="card-links"><a class="btn-careers btn-c" href="https://www.comadur.com/en/careers/" target="_blank" rel="noopener">&#8599; Comadur Careers</a></div>
+  </div>
+
+  <div class="company-card c-watch">
+    <div class="card-header">
+      <div><div class="company-name">Nivarox-FAR SA</div><div class="company-location">NE &#8212; Le Locle / BE &#8212; Villeret</div></div>
+      <span class="size-tag sz-M">Moyen</span>
+    </div>
+    <p class="company-desc">Filiale Swatch. Alliages superelastiques, spiraux horlogers, materiaux metalliques de haute precision. R&amp;D materiaux fondamental.</p>
+    <div class="card-links"><a class="btn-careers btn-c" href="https://www.swatchgroup.com/en/job-finder" target="_blank" rel="noopener">&#8599; Via Swatch Group</a></div>
+  </div>
+
+  <div class="company-card c-watch">
+    <div class="card-header">
+      <div><div class="company-name">Cartier (Richemont)</div><div class="company-location">GE &#8212; Meyrin / La Chaux-de-Fonds NE</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Manufacture joaillerie et horlogerie. Materiaux precieux, controle qualite, procedes de fabrication haute precision.</p>
+    <div class="card-links"><a class="btn-careers btn-c" href="https://www.richemont.com/talent/" target="_blank" rel="noopener">&#8599; Via Richemont</a></div>
+  </div>
+
+  <div class="company-card c-watch">
+    <div class="card-header">
+      <div><div class="company-name">TAG Heuer (LVMH)</div><div class="company-location">VD &#8212; Chevenez / NE &#8212; La Chaux-de-Fonds</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Horlogerie sportive. Materiaux high-tech, ceramique, composites carbone. Industrialisation et qualite.</p>
+    <div class="card-links"><a class="btn-careers btn-c" href="https://www.lvmh.com/en/join-us/our-job-offers" target="_blank" rel="noopener">&#8599; Via LVMH</a></div>
+  </div>
+
+  <div class="company-card c-watch">
+    <div class="card-header">
+      <div><div class="company-name">Hublot</div><div class="company-location">GE &#8212; Nyon</div></div>
+      <span class="size-tag sz-M">Moyen</span>
+    </div>
+    <p class="company-desc">Precurseur caoutchouc/ceramique. Materiaux innovants, composite "Magic Gold", ceramique coloree. R&amp;D tres actif.</p>
+    <div class="card-links"><a class="btn-careers btn-c" href="https://www.hublot.com/fr/careers" target="_blank" rel="noopener">&#8599; Hublot Careers</a></div>
+  </div>
+
+  <div class="company-card c-watch">
+    <div class="card-header">
+      <div><div class="company-name">Sellita Watch Co.</div><div class="company-location">NE &#8212; Le Crêt-du-Locle</div></div>
+      <span class="size-tag sz-M">Moyen</span>
+    </div>
+    <p class="company-desc">Fabricant de mouvements horlogers. Composants de precision, qualite, industrialisation. Profil mecanique et qualite bienvenu.</p>
+    <div class="card-links"><a class="btn-careers btn-c" href="https://www.sellita.ch/en/careers/" target="_blank" rel="noopener">&#8599; Sellita Careers</a></div>
+  </div>
+
+  <div class="company-card c-watch">
+    <div class="card-header">
+      <div><div class="company-name">Manufacture Piguet (AP)</div><div class="company-location">VD &#8212; Le Brassus</div></div>
+      <span class="size-tag sz-M">Moyen</span>
+    </div>
+    <p class="company-desc">Sous-traitant manufacture mouvements haute complication. Composants ultra-precision, materiaux.</p>
+    <div class="card-links"><a class="btn-careers btn-c" href="https://careers.audemarspiguet.com/en/job-listing" target="_blank" rel="noopener">&#8599; Via AP</a></div>
+  </div>
+
+  <div class="company-card c-watch">
+    <div class="card-header">
+      <div><div class="company-name">Omega SA (Swatch)</div><div class="company-location">BE &#8212; Biel/Bienne</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Ceramique noire et blanche, alliages titane, Co-Axial. Actif R&amp;D materiaux, revetements anti-magnetiques.</p>
+    <div class="card-links"><a class="btn-careers btn-c" href="https://www.swatchgroup.com/en/job-finder" target="_blank" rel="noopener">&#8599; Via Swatch Group</a></div>
+  </div>
+
+  <div class="company-card c-watch">
+    <div class="card-header">
+      <div><div class="company-name">Chanel Watches</div><div class="company-location">GE &#8212; Geneve</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Division horlogerie Chanel. Materiaux proprietaires (ceramique J12, titane). Manufacture Kenissi partagee avec Tudor.</p>
+    <div class="card-links"><a class="btn-careers btn-c" href="https://careers.chanel.com/en_CH" target="_blank" rel="noopener">&#8599; Chanel Careers CH</a></div>
+  </div>
+
+  <div class="company-card c-watch">
+    <div class="card-header">
+      <div><div class="company-name">LVMH Watches (Dior, BVL)</div><div class="company-location">GE &#8212; Geneve / NE</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Bulgari, Louis Vuitton Watches. Materiaux precieux, ceramique, qualite manufacture. Postes suisses sur portail groupe.</p>
+    <div class="card-links"><a class="btn-careers btn-c" href="https://careers.smartrecruiters.com/LVMH2" target="_blank" rel="noopener">&#8599; LVMH SmartRecruiters</a></div>
+  </div>
 
 </div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<!-- 2. PHARMA & BIOTECH -->
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<div class="divider"></div>
+<div id="pharma" class="anchor-target"></div>
+<div class="section-head">
+  <span class="section-icon">&#128138;</span>
+  <div>
+    <div class="section-label">Secteur 2</div>
+    <div class="section-title">Pharma, Biotech &amp; Sciences de la vie</div>
+  </div>
+</div>
+<p class="section-desc">Axe lemanique (GE, VD) et Valais &#8212; polymeres, excipients, emballage pharmaceutique, materiaux de conditionnement, equipements de production. Profil materiaux tres pertinent en pharma.</p>
+<div class="companies-grid">
+
+  <div class="company-card c-pharma">
+    <div class="card-header">
+      <div><div class="company-name">Lonza AG</div><div class="company-location">VS &#8212; Viege (Visp)</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">CDMO pharma mondial. 4700+ employes sur site Visp. Chimie fine, procedes biotechnologiques, materiaux de synthese.</p>
+    <div class="card-links"><a class="btn-careers btn-p" href="https://jobs.lonza.com/search/?locationsearch=Switzerland" target="_blank" rel="noopener">&#8599; Lonza Jobs CH</a></div>
+  </div>
+
+  <div class="company-card c-pharma">
+    <div class="card-header">
+      <div><div class="company-name">Debiopharm</div><div class="company-location">VD &#8212; Lausanne</div></div>
+      <span class="size-tag sz-M">Moyen</span>
+    </div>
+    <p class="company-desc">Biotech oncologie. Formulation, materiaux d'encapsulation, developpement galenic. Postes R&amp;D chimie/materiaux.</p>
+    <div class="card-links"><a class="btn-careers btn-p" href="https://www.debiopharm.com/careers/" target="_blank" rel="noopener">&#8599; Debiopharm Careers</a></div>
+  </div>
+
+  <div class="company-card c-pharma">
+    <div class="card-header">
+      <div><div class="company-name">UCB Farchim SA</div><div class="company-location">FR &#8212; Bulle</div></div>
+      <span class="size-tag sz-M">Moyen</span>
+    </div>
+    <p class="company-desc">Site de production pharma en Fribourg. Validation equipements, materiaux conditionnement, qualite GMP.</p>
+    <div class="card-links"><a class="btn-careers btn-p" href="https://www.ucb.com/careers/Search-and-Apply" target="_blank" rel="noopener">&#8599; UCB Careers</a></div>
+  </div>
+
+  <div class="company-card c-pharma">
+    <div class="card-header">
+      <div><div class="company-name">Ferring Pharmaceuticals</div><div class="company-location">GE &#8212; Saint-Prex VD / GE</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">HQ a Saint-Prex (VD). Procedes pharma, materiaux de formulation, conditionnement. Env. 1200 employes en CH.</p>
+    <div class="card-links"><a class="btn-careers btn-p" href="https://www.ferring.com/careers/" target="_blank" rel="noopener">&#8599; Ferring Careers</a></div>
+  </div>
+
+  <div class="company-card c-pharma">
+    <div class="card-header">
+      <div><div class="company-name">Novartis</div><div class="company-location">GE &#8212; Nyon, Rolle</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Sites en Suisse romande (Nyon, Rolle). Conditionnement, materiaux polymeres medicaux, qualite industrielle.</p>
+    <div class="card-links"><a class="btn-careers btn-p" href="https://www.novartis.com/careers/career-search?location=Switzerland" target="_blank" rel="noopener">&#8599; Novartis Jobs CH</a></div>
+  </div>
+
+  <div class="company-card c-pharma">
+    <div class="card-header">
+      <div><div class="company-name">Roche</div><div class="company-location">GE &#8212; Kaiseraugst / VD</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Site Kaiseraugst (AG, proche GE). Diagnostics, emballage, materiaux devicess medicaux. Profil qualite/materiaux.</p>
+    <div class="card-links"><a class="btn-careers btn-p" href="https://careers.roche.com/global/en/search-jobs?location=Switzerland" target="_blank" rel="noopener">&#8599; Roche Careers CH</a></div>
+  </div>
+
+  <div class="company-card c-pharma">
+    <div class="card-header">
+      <div><div class="company-name">ExcellGene SA</div><div class="company-location">VS &#8212; Monthey</div></div>
+      <span class="size-tag sz-S">PME</span>
+    </div>
+    <p class="company-desc">CRO/CDMO biotech. Procedes cell culture, bioprocessing, materiaux de culture cellulaire. PME innovante en Valais.</p>
+    <div class="card-links"><a class="btn-careers btn-p" href="https://www.excellgene.com/careers" target="_blank" rel="noopener">&#8599; ExcellGene Careers</a></div>
+  </div>
+
+  <div class="company-card c-pharma">
+    <div class="card-header">
+      <div><div class="company-name">BioVersys</div><div class="company-location">GE &#8212; Geneve</div></div>
+      <span class="size-tag sz-S">PME</span>
+    </div>
+    <p class="company-desc">Biotech antibiotiques. Developpement de composes, formulation, chimie medicale. Startup active a Geneve.</p>
+    <div class="card-links"><a class="btn-careers btn-p" href="https://bioversys.com/about-us/careers/" target="_blank" rel="noopener">&#8599; BioVersys Careers</a></div>
+  </div>
+
+  <div class="company-card c-pharma">
+    <div class="card-header">
+      <div><div class="company-name">Sanofi Suisse</div><div class="company-location">GE &#8212; Geneve / VS &#8212; Visp</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Production vaccines et bioproduction a Visp (en lien avec Lonza). Materiaux de conditionnement, validation GMP.</p>
+    <div class="card-links"><a class="btn-careers btn-p" href="https://www.sanofi.com/en/careers/search-jobs?location=Switzerland" target="_blank" rel="noopener">&#8599; Sanofi Jobs CH</a></div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<!-- 3. CHIMIE & MATERIAUX -->
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<div class="divider"></div>
+<div id="chimie" class="anchor-target"></div>
+<div class="section-head">
+  <span class="section-icon">&#9878;</span>
+  <div>
+    <div class="section-label">Secteur 3</div>
+    <div class="section-title">Chimie, Materiaux &amp; Revetements</div>
+  </div>
+</div>
+<p class="section-desc">Le coeur du profil &#8212; polymeres, resines, composites, revetements, adhesifs, chimie de specialite. Nombreuses entreprises en arc lemanique et Valais.</p>
+<div class="companies-grid">
+
+  <div class="company-card c-chem">
+    <div class="card-header">
+      <div><div class="company-name">Givaudan SA</div><div class="company-location">GE &#8212; Vernier / Kemptthal ZH</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Leader mondial parfums et aromes. HQ Vernier (GE). Chimie organique, encapsulation, materiaux de liberation.</p>
+    <div class="card-links"><a class="btn-careers btn-y" href="https://www.givaudan.com/careers/job-opportunities" target="_blank" rel="noopener">&#8599; Givaudan Careers</a></div>
+  </div>
+
+  <div class="company-card c-chem">
+    <div class="card-header">
+      <div><div class="company-name">dsm-firmenich</div><div class="company-location">GE &#8212; Geneve (Satigny) / VD</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Parfums, aromes, nutrition. HQ Geneve. Encapsulation, polymeres, materiaux fonctionnels. Profil chimie/materiaux.</p>
+    <div class="card-links"><a class="btn-careers btn-y" href="https://www.dsm-firmenich.com/en/careers/find-a-job.html" target="_blank" rel="noopener">&#8599; dsm-firmenich Jobs</a></div>
+  </div>
+
+  <div class="company-card c-chem">
+    <div class="card-header">
+      <div><div class="company-name">Sika AG</div><div class="company-location">VD &#8212; Nyon / GE &#8212; Lancy</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Adhesifs, joints, mortiers, resines. Sites en Romandie. Formulation polymeres thermodurcissables &#8212; profil ideal.</p>
+    <div class="card-links"><a class="btn-careers btn-y" href="https://www.sika.com/en/company/career.html" target="_blank" rel="noopener">&#8599; Sika Careers</a></div>
+  </div>
+
+  <div class="company-card c-chem">
+    <div class="card-header">
+      <div><div class="company-name">Clariant SA</div><div class="company-location">VD &#8212; Muttenz / sites romands</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Chimie de specialite : additifs, pigments, masterbatches, catalyseurs. Profil materiaux/polymeres tres pertinent.</p>
+    <div class="card-links"><a class="btn-careers btn-y" href="https://jobs.clariant.com/search/?locationsearch=Switzerland" target="_blank" rel="noopener">&#8599; Clariant Jobs CH</a></div>
+  </div>
+
+  <div class="company-card c-chem">
+    <div class="card-header">
+      <div><div class="company-name">INEOS Suisse</div><div class="company-location">VD &#8212; Rolle</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">HQ Europe a Rolle (VD). Petrochimie et chimie. Polymeres de base, developpement materiaux, ingenierie procedes.</p>
+    <div class="card-links"><a class="btn-careers btn-y" href="https://www.ineos.com/careers/" target="_blank" rel="noopener">&#8599; INEOS Careers</a></div>
+  </div>
+
+  <div class="company-card c-chem">
+    <div class="card-header">
+      <div><div class="company-name">Huntsman Corporation</div><div class="company-location">VS &#8212; Monthey</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Site de production a Monthey (VS). Resines epoxy, polyurethanes, MDI. Profil thermoset/polymeres ideal.</p>
+    <div class="card-links"><a class="btn-careers btn-y" href="https://www.huntsman.com/careers" target="_blank" rel="noopener">&#8599; Huntsman Careers</a></div>
+  </div>
+
+  <div class="company-card c-chem">
+    <div class="card-header">
+      <div><div class="company-name">Syngenta</div><div class="company-location">GE &#8212; Geneve (Plenpalais) / VD</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Agrochimie, formulation phytosanitaire, materiaux d'encapsulation, R&amp;D chimie. HQ a Bale, presence forte en Romandie.</p>
+    <div class="card-links"><a class="btn-careers btn-y" href="https://www.syngenta.com/en/careers" target="_blank" rel="noopener">&#8599; Syngenta Careers</a></div>
+  </div>
+
+  <div class="company-card c-chem">
+    <div class="card-header">
+      <div><div class="company-name">EuroChem Agro</div><div class="company-location">GE &#8212; Geneve</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Engrais et chimie minerale. HQ a Geneve. Qualite, procedes, materiaux industriels. Grand groupe mondial.</p>
+    <div class="card-links"><a class="btn-careers btn-y" href="https://www.eurochemgroup.com/careers/" target="_blank" rel="noopener">&#8599; EuroChem Careers</a></div>
+  </div>
+
+  <div class="company-card c-chem">
+    <div class="card-header">
+      <div><div class="company-name">Sun Chemical</div><div class="company-location">VS &#8212; Monthey</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Encres, pigments, revetements. Site Monthey (VS). Chimie des pigments, liants polymeres, formulation.</p>
+    <div class="card-links"><a class="btn-careers btn-y" href="https://www.sunchemical.com/about/careers/" target="_blank" rel="noopener">&#8599; Sun Chemical Careers</a></div>
+  </div>
+
+  <div class="company-card c-chem">
+    <div class="card-header">
+      <div><div class="company-name">Cabb AG</div><div class="company-location">VS &#8212; Monthey</div></div>
+      <span class="size-tag sz-M">Moyen</span>
+    </div>
+    <p class="company-desc">Chimie fine, intermediaires chloro-aromatiques, HSE industriel. Site majeur a Monthey (VS). Profil chimie/materiaux.</p>
+    <div class="card-links"><a class="btn-careers btn-y" href="https://www.cabb-chemicals.com/careers/" target="_blank" rel="noopener">&#8599; Cabb Careers</a></div>
+  </div>
+
+  <div class="company-card c-chem">
+    <div class="card-header">
+      <div><div class="company-name">Michelin Recherche</div><div class="company-location">FR &#8212; Givisiez (pres Fribourg)</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Centre R&amp;T Michelin en Suisse. Elastomeres, polymeres, composites, materiaux durables. Tres pertinent pour profil materiaux polymeres.</p>
+    <div class="card-links"><a class="btn-careers btn-y" href="https://jobs.michelin.com/search/?locationsearch=Switzerland" target="_blank" rel="noopener">&#8599; Michelin Jobs CH</a></div>
+  </div>
+
+  <div class="company-card c-chem">
+    <div class="card-header">
+      <div><div class="company-name">Nestlé R&amp;D</div><div class="company-location">VD &#8212; Lausanne, Vevey</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Centre R&amp;D Nestle a Lausanne. Materiaux d'emballage, biopolymeres, barriere, durabilite emballages. Profil materiaux pertinent.</p>
+    <div class="card-links"><a class="btn-careers btn-y" href="https://www.nestle.com/jobs" target="_blank" rel="noopener">&#8599; Nestle Jobs</a></div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<!-- 4. MEDTECH -->
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<div class="divider"></div>
+<div id="medtech" class="anchor-target"></div>
+<div class="section-head">
+  <span class="section-icon">&#129657;</span>
+  <div>
+    <div class="section-label">Secteur 4</div>
+    <div class="section-title">Medtech &amp; Dispositifs medicaux</div>
+  </div>
+</div>
+<p class="section-desc">Suisse romande = hub medtech europeen. Polymeres medicaux, ceramiques biocompatibles, metaux implantaires, sterilisation, ISO 13485. Profil materiaux tres demande.</p>
+<div class="companies-grid">
+
+  <div class="company-card c-medtech">
+    <div class="card-header">
+      <div><div class="company-name">Medtronic Suisse</div><div class="company-location">VD &#8212; Tolochenaz</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">HQ europeen a Tolochenaz (VD). Dispositifs cardiaques, implants. Materiaux biocompatibles, polymeres medicaux, qualite ISO 13485.</p>
+    <div class="card-links"><a class="btn-careers btn-v" href="https://jobs.medtronic.com/jobs/search?location=Switzerland" target="_blank" rel="noopener">&#8599; Medtronic Jobs CH</a></div>
+  </div>
+
+  <div class="company-card c-medtech">
+    <div class="card-header">
+      <div><div class="company-name">Stryker</div><div class="company-location">GE &#8212; Geneve / VD</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Implants orthopediques, bio-materiaux osseux, ceramiques d'implant. Postes R&amp;D materiaux et qualite regulatory.</p>
+    <div class="card-links"><a class="btn-careers btn-v" href="https://careers.stryker.com/job-search-results/?location=Switzerland" target="_blank" rel="noopener">&#8599; Stryker Jobs CH</a></div>
+  </div>
+
+  <div class="company-card c-medtech">
+    <div class="card-header">
+      <div><div class="company-name">Zimmer Biomet</div><div class="company-location">VD &#8212; Ecublens</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Implants orthopediques. UHMWPE, CoCrMo, ceramique Al2O3. Qualite et materiaux biomedicaux au coeur du metier.</p>
+    <div class="card-links"><a class="btn-careers btn-v" href="https://www.zimmerbiomet.com/en/careers.html" target="_blank" rel="noopener">&#8599; Zimmer Biomet Careers</a></div>
+  </div>
+
+  <div class="company-card c-medtech">
+    <div class="card-header">
+      <div><div class="company-name">Terumo Europe</div><div class="company-location">VD &#8212; Morges</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Dispositifs cardiovasculaires. Polymeres medicaux, silicones, qualite ISO 13485. Presence en Romandie.</p>
+    <div class="card-links"><a class="btn-careers btn-v" href="https://www.terumocareers.com/search/?q=Switzerland" target="_blank" rel="noopener">&#8599; Terumo Careers</a></div>
+  </div>
+
+  <div class="company-card c-medtech">
+    <div class="card-header">
+      <div><div class="company-name">Abbott</div><div class="company-location">VD &#8212; Allschwil / GE &#8212; Cologny</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Diagnostics et dispositifs. Sites en Romandie. Materiaux de diagnostic, polymeres, systemes microfluidiques.</p>
+    <div class="card-links"><a class="btn-careers btn-v" href="https://www.jobs.abbott/search-jobs/Switzerland" target="_blank" rel="noopener">&#8599; Abbott Jobs CH</a></div>
+  </div>
+
+  <div class="company-card c-medtech">
+    <div class="card-header">
+      <div><div class="company-name">Sonova (Phonak)</div><div class="company-location">VD &#8212; Lausanne (siege)</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Aides auditives et implants cochleaires. Polymeres miniaturises, materiaux biocompatibles, R&amp;D innovation.</p>
+    <div class="card-links"><a class="btn-careers btn-v" href="https://www.sonova.com/en/careers/open-positions" target="_blank" rel="noopener">&#8599; Sonova Careers</a></div>
+  </div>
+
+  <div class="company-card c-medtech">
+    <div class="card-header">
+      <div><div class="company-name">Mathys AG Bettlach</div><div class="company-location">BE &#8212; Bettlach / SO</div></div>
+      <span class="size-tag sz-M">Moyen</span>
+    </div>
+    <p class="company-desc">Implants orthopediques suisses. Alliages de titane, CoCr, PEEK, ceramiques. Tres fort profil materiaux requis.</p>
+    <div class="card-links"><a class="btn-careers btn-v" href="https://www.mathysmedical.com/careers" target="_blank" rel="noopener">&#8599; Mathys Careers</a></div>
+  </div>
+
+  <div class="company-card c-medtech">
+    <div class="card-header">
+      <div><div class="company-name">Micromed SA</div><div class="company-location">VD &#8212; Lausanne / NE</div></div>
+      <span class="size-tag sz-S">PME</span>
+    </div>
+    <p class="company-desc">Sous-traitance medtech, usinage micro-precision, composants dispositifs medicaux. Profil qualite/mecanique.</p>
+    <div class="card-links"><a class="btn-careers btn-v" href="https://www.jobs.ch/fr/offres/?term=micromed&location=Vaud" target="_blank" rel="noopener">&#8599; Rechercher sur Jobs.ch</a></div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<!-- 5. MECANIQUE & MACHINES -->
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<div class="divider"></div>
+<div id="mecanique" class="anchor-target"></div>
+<div class="section-head">
+  <span class="section-icon">&#9881;</span>
+  <div>
+    <div class="section-label">Secteur 5</div>
+    <div class="section-title">Mecanique, Machines &amp; Construction</div>
+  </div>
+</div>
+<p class="section-desc">Machines industrielles, ferroviaire, moteurs, emballage, usinage. Profil mecanique/materiaux pour selection materiaux, R&amp;D, qualification et qualite.</p>
+<div class="companies-grid">
+
+  <div class="company-card c-mech">
+    <div class="card-header">
+      <div><div class="company-name">Bobst Group SA</div><div class="company-location">VD &#8212; Mex</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Machines d'emballage, leader mondial. HQ Mex (VD). Materiaux rouleaux, revetements, conception mecanismes. 5400 employes.</p>
+    <div class="card-links"><a class="btn-careers btn-o" href="https://www.bobst.com/en/career/open-positions/" target="_blank" rel="noopener">&#8599; Bobst Jobs</a></div>
+  </div>
+
+  <div class="company-card c-mech">
+    <div class="card-header">
+      <div><div class="company-name">Alstom (Stadler)</div><div class="company-location">VD &#8212; Lausanne / GE</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Materiaux ferroviaires, composites structures, traitements anti-corrosion, revetements de protection. Profil materiaux pertinent.</p>
+    <div class="card-links"><a class="btn-careers btn-o" href="https://www.alstom.com/careers/job-search?l=Switzerland" target="_blank" rel="noopener">&#8599; Alstom Jobs CH</a></div>
+  </div>
+
+  <div class="company-card c-mech">
+    <div class="card-header">
+      <div><div class="company-name">Liebherr</div><div class="company-location">VD &#8212; Bulle</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Machines de construction, refrigeration, aerospace. Usine a Bulle (FR). Selection materiaux, R&amp;D produits. Grand groupe.</p>
+    <div class="card-links"><a class="btn-careers btn-o" href="https://www.liebherr.com/en/careers/career-search.html?country=CH" target="_blank" rel="noopener">&#8599; Liebherr Careers CH</a></div>
+  </div>
+
+  <div class="company-card c-mech">
+    <div class="card-header">
+      <div><div class="company-name">Geberit</div><div class="company-location">FR &#8212; Givisiez</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Sanitaire et plomberie. Usine a Givisiez (FR). Polymeres, ceramiques sanitaires, R&amp;D materiaux produits.</p>
+    <div class="card-links"><a class="btn-careers btn-o" href="https://www.geberit.com/company/careers/open-positions/" target="_blank" rel="noopener">&#8599; Geberit Careers</a></div>
+  </div>
+
+  <div class="company-card c-mech">
+    <div class="card-header">
+      <div><div class="company-name">MATISA Materiel Industriel</div><div class="company-location">VD &#8212; Crissier</div></div>
+      <span class="size-tag sz-M">Moyen</span>
+    </div>
+    <p class="company-desc">Machines de maintenance ferroviaire. Conception mecanique, materiaux structures, qualification composants.</p>
+    <div class="card-links"><a class="btn-careers btn-o" href="https://www.matisa.ch/recrutement" target="_blank" rel="noopener">&#8599; MATISA Recrutement</a></div>
+  </div>
+
+  <div class="company-card c-mech">
+    <div class="card-header">
+      <div><div class="company-name">Sapal SA</div><div class="company-location">VD &#8212; Ecublens</div></div>
+      <span class="size-tag sz-M">Moyen</span>
+    </div>
+    <p class="company-desc">Machines d'emballage alimentaire (chocolat). Conception mecanique, materiaux contact alimentaire, qualite produits.</p>
+    <div class="card-links"><a class="btn-careers btn-o" href="https://www.jobs.ch/fr/offres/?term=sapal&location=Vaud" target="_blank" rel="noopener">&#8599; Rechercher sur Jobs.ch</a></div>
+  </div>
+
+  <div class="company-card c-mech">
+    <div class="card-header">
+      <div><div class="company-name">Polytype SA</div><div class="company-location">FR &#8212; Fribourg</div></div>
+      <span class="size-tag sz-M">Moyen</span>
+    </div>
+    <p class="company-desc">Machines d'impression et decoration. HQ Fribourg. Materiaux de decoration, encres, adhesifs, procedes industriels.</p>
+    <div class="card-links"><a class="btn-careers btn-o" href="https://www.polytype.com/company/jobs/" target="_blank" rel="noopener">&#8599; Polytype Jobs</a></div>
+  </div>
+
+  <div class="company-card c-mech">
+    <div class="card-header">
+      <div><div class="company-name">WIB Roulement Bulle</div><div class="company-location">FR &#8212; Bulle</div></div>
+      <span class="size-tag sz-S">PME</span>
+    </div>
+    <p class="company-desc">Fabrication roulements specialises. Materiaux aciers, traitements thermiques, qualite dimensionnelle. Profil materiaux ideal.</p>
+    <div class="card-links"><a class="btn-careers btn-o" href="https://www.wib-bearings.com/jobs" target="_blank" rel="noopener">&#8599; WIB Jobs</a></div>
+  </div>
+
+  <div class="company-card c-mech">
+    <div class="card-header">
+      <div><div class="company-name">Frewitt SA</div><div class="company-location">FR &#8212; Granges-Paccot</div></div>
+      <span class="size-tag sz-S">PME</span>
+    </div>
+    <p class="company-desc">Machines de broyage et tamisage pour pharma/chimie/alimentaire. Materiaux contact, inox, qualite GMP. PME.</p>
+    <div class="card-links"><a class="btn-careers btn-o" href="https://www.frewitt.com/about-us/careers/" target="_blank" rel="noopener">&#8599; Frewitt Careers</a></div>
+  </div>
+
+  <div class="company-card c-mech">
+    <div class="card-header">
+      <div><div class="company-name">Precitrame Machines SA</div><div class="company-location">BE &#8212; Tramelan</div></div>
+      <span class="size-tag sz-S">PME</span>
+    </div>
+    <p class="company-desc">Machines speciales de precision. Conception mecanique, composants de precision, materiaux speciaux. PME Jura bernois.</p>
+    <div class="card-links"><a class="btn-careers btn-o" href="https://www.precitrame.ch/emploi" target="_blank" rel="noopener">&#8599; Precitrame Emplois</a></div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<!-- 6. MICROTECHNIQUE & ELECTRONIQUE -->
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<div class="divider"></div>
+<div id="micro" class="anchor-target"></div>
+<div class="section-head">
+  <span class="section-icon">&#128300;</span>
+  <div>
+    <div class="section-label">Secteur 6</div>
+    <div class="section-title">Microtechnique, Electronique &amp; Semi-conducteurs</div>
+  </div>
+</div>
+<p class="section-desc">Arc neuchatelois (NE, BE-Jura) &#8212; precision extreme, materiaux fonctionnels, depots minces, ceramiques techniques, connecteurs. Arc horloger elargi.</p>
+<div class="companies-grid">
+
+  <div class="company-card c-micro">
+    <div class="card-header">
+      <div><div class="company-name">CSEM SA</div><div class="company-location">NE &#8212; Neuchatel / BE &#8212; Berne</div></div>
+      <span class="size-tag sz-M">Moyen</span>
+    </div>
+    <p class="company-desc">Centre suisse electronique et microtechnique. R&amp;D couches minces, materiaux fonctionnels, MEMS, photovoltaique. Profil materiaux tres bien valorise.</p>
+    <div class="card-links"><a class="btn-careers btn-c" href="https://www.csem.ch/en/careers/" target="_blank" rel="noopener">&#8599; CSEM Careers</a></div>
+  </div>
+
+  <div class="company-card c-micro">
+    <div class="card-header">
+      <div><div class="company-name">Mikron Group</div><div class="company-location">NE &#8212; Boudry / BE &#8212; Agno</div></div>
+      <span class="size-tag sz-M">Moyen</span>
+    </div>
+    <p class="company-desc">Usinage de precision et automatisation. Materiaux de coupe, revetements d'outils, qualite. Postes R&amp;D et industrialisation.</p>
+    <div class="card-links"><a class="btn-careers btn-c" href="https://www.mikron.com/about-mikron/career/open-positions/" target="_blank" rel="noopener">&#8599; Mikron Careers</a></div>
+  </div>
+
+  <div class="company-card c-micro">
+    <div class="card-header">
+      <div><div class="company-name">PRECI-DIP SA</div><div class="company-location">JU &#8212; Delemont</div></div>
+      <span class="size-tag sz-S">PME</span>
+    </div>
+    <p class="company-desc">Connecteurs de precision, contacts electroniques. Alliages de beryllium-cuivre, platinage, traitement de surface. Leader international depuis Delemont.</p>
+    <div class="card-links"><a class="btn-careers btn-c" href="https://www.preci-dip.com/careers/" target="_blank" rel="noopener">&#8599; PRECI-DIP Careers</a></div>
+  </div>
+
+  <div class="company-card c-micro">
+    <div class="card-header">
+      <div><div class="company-name">Renesas Electronics</div><div class="company-location">NE &#8212; Colombier</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Semi-conducteurs et capteurs. Site NE. Materiaux semi-conducteurs, encapsulation, packaging electronique.</p>
+    <div class="card-links"><a class="btn-careers btn-c" href="https://careers.renesas.com/search/?country=Switzerland" target="_blank" rel="noopener">&#8599; Renesas Jobs CH</a></div>
+  </div>
+
+  <div class="company-card c-micro">
+    <div class="card-header">
+      <div><div class="company-name">Petitpierre SA</div><div class="company-location">NE &#8212; Cortaillod</div></div>
+      <span class="size-tag sz-S">PME</span>
+    </div>
+    <p class="company-desc">Composants horlogers et industriels de precision. Usinage, fraisage, decolletage de precision. Materiaux speciaux.</p>
+    <div class="card-links"><a class="btn-careers btn-c" href="https://petitpierre.ch/en/corporate-culture/" target="_blank" rel="noopener">&#8599; Petitpierre Careers</a></div>
+  </div>
+
+  <div class="company-card c-micro">
+    <div class="card-header">
+      <div><div class="company-name">Comelec SA</div><div class="company-location">NE &#8212; La Chaux-de-Fonds</div></div>
+      <span class="size-tag sz-S">PME</span>
+    </div>
+    <p class="company-desc">Depots physiques en phase vapeur (PVD), revetements durs, nitrures. Expertise de surface tres pertinente.</p>
+    <div class="card-links"><a class="btn-careers btn-c" href="https://www.comelec.ch/fr/la-societe/offres-demploi/" target="_blank" rel="noopener">&#8599; Comelec Emplois</a></div>
+  </div>
+
+  <div class="company-card c-micro">
+    <div class="card-header">
+      <div><div class="company-name">Monnin SA</div><div class="company-location">BE &#8212; Sonceboz</div></div>
+      <span class="size-tag sz-S">PME</span>
+    </div>
+    <p class="company-desc">Composants electroniques de precision, microtechnique. Jura bernois. Profil microtechnique/materiaux bienvenu.</p>
+    <div class="card-links"><a class="btn-careers btn-c" href="https://www.monnin.ch/emplois" target="_blank" rel="noopener">&#8599; Monnin Emplois</a></div>
+  </div>
+
+  <div class="company-card c-micro">
+    <div class="card-header">
+      <div><div class="company-name">WAGO Contact SA</div><div class="company-location">FR &#8212; Domdidier</div></div>
+      <span class="size-tag sz-M">Moyen</span>
+    </div>
+    <p class="company-desc">Connecteurs electriques et electroniques. Usine a Domdidier (FR). Polymeres techniques, alliages de contacts, qualite.</p>
+    <div class="card-links"><a class="btn-careers btn-c" href="https://www.wago.com/ch-fr/careers" target="_blank" rel="noopener">&#8599; WAGO Careers CH</a></div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<!-- 7. AGROALIMENTAIRE -->
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<div class="divider"></div>
+<div id="food" class="anchor-target"></div>
+<div class="section-head">
+  <span class="section-icon">&#127807;</span>
+  <div>
+    <div class="section-label">Secteur 7</div>
+    <div class="section-title">Agroalimentaire &amp; Emballage</div>
+  </div>
+</div>
+<p class="section-desc">Emballage alimentaire, bioplastiques, materiaux contact alimentaire, barriere. Nestle a Vevey, nombreux centres R&amp;D en Vaud et Fribourg.</p>
+<div class="companies-grid">
+
+  <div class="company-card c-food">
+    <div class="card-header">
+      <div><div class="company-name">Nestlé SA (HQ + R&amp;D)</div><div class="company-location">VD &#8212; Vevey, Lausanne</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">HQ mondial a Vevey. Centre R&amp;D Lausanne. Emballage, biopolymeres, materiaux d'emballage durables. Tres gros recruteur.</p>
+    <div class="card-links"><a class="btn-careers btn-r" href="https://www.nestle.com/jobs" target="_blank" rel="noopener">&#8599; Nestle Jobs</a></div>
+  </div>
+
+  <div class="company-card c-food">
+    <div class="card-header">
+      <div><div class="company-name">Nestlé Nespresso</div><div class="company-location">VD &#8212; Lausanne, Romont FR</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Capsules aluminium, emballage durable, recyclabilite. R&amp;D materiaux capsules, revetements, ecoconception. Tres pertinent.</p>
+    <div class="card-links"><a class="btn-careers btn-r" href="https://www.nestle.com/jobs" target="_blank" rel="noopener">&#8599; Via Nestle Jobs</a></div>
+  </div>
+
+  <div class="company-card c-food">
+    <div class="card-header">
+      <div><div class="company-name">Tetra Pak Suisse</div><div class="company-location">GE &#8212; Pully VD / GE</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Materiaux d'emballage carton/alu/plastique multicouche, recyclabilite, bioplas. R&amp;D materiaux emballage pertinent.</p>
+    <div class="card-links"><a class="btn-careers btn-r" href="https://jobs.tetrapak.com/search/?country=Switzerland" target="_blank" rel="noopener">&#8599; Tetra Pak Jobs CH</a></div>
+  </div>
+
+  <div class="company-card c-food">
+    <div class="card-header">
+      <div><div class="company-name">Barry Callebaut</div><div class="company-location">VD &#8212; Vernier / GE</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Chocolat industriel mondial. R&amp;D formulation, materiaux d'emballage, revetements. Site en Romandie.</p>
+    <div class="card-links"><a class="btn-careers btn-r" href="https://www.barry-callebaut.com/en/group/career/opportunities" target="_blank" rel="noopener">&#8599; Barry Callebaut Jobs</a></div>
+  </div>
+
+  <div class="company-card c-food">
+    <div class="card-header">
+      <div><div class="company-name">Micarna SA (Migros)</div><div class="company-location">FR &#8212; Courtepin</div></div>
+      <span class="size-tag sz-M">Moyen</span>
+    </div>
+    <p class="company-desc">Industrie carnee Migros. Materiaux d'emballage alimentaire, qualite HACCP, maintenance industrielle. Site Fribourg.</p>
+    <div class="card-links"><a class="btn-careers btn-r" href="https://www.migros-gruppe.ch/fr/emploi" target="_blank" rel="noopener">&#8599; Migros Industrie Jobs</a></div>
+  </div>
+
+  <div class="company-card c-food">
+    <div class="card-header">
+      <div><div class="company-name">SIG Group</div><div class="company-location">VD &#8212; Romont / FR</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Emballage aseptique (carton/alu/poly). R&amp;D materiaux d'emballage, barriere, soudures. Profil materiaux polymeres pertinent.</p>
+    <div class="card-links"><a class="btn-careers btn-r" href="https://www.sig.biz/en/careers/job-openings" target="_blank" rel="noopener">&#8599; SIG Careers</a></div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<!-- 8. ENERGIE & ENVIRONNEMENT -->
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<div class="divider"></div>
+<div id="energie" class="anchor-target"></div>
+<div class="section-head">
+  <span class="section-icon">&#9889;</span>
+  <div>
+    <div class="section-label">Secteur 8</div>
+    <div class="section-title">Energie, Cleantech &amp; Environnement</div>
+  </div>
+</div>
+<p class="section-desc">Photovoltaique, batteries, materiaux durables, membranes, isolation thermique. Secteur en forte croissance en Suisse romande.</p>
+<div class="companies-grid">
+
+  <div class="company-card c-energy">
+    <div class="card-header">
+      <div><div class="company-name">Meyer Burger Technology</div><div class="company-location">BE &#8212; Thun</div></div>
+      <span class="size-tag sz-M">Moyen</span>
+    </div>
+    <p class="company-desc">Fabricant cellules et modules solaires. Materiaux silicium, EVA, backsheet, perovskite. R&amp;D photovoltaique avance.</p>
+    <div class="card-links"><a class="btn-careers btn-b" href="https://www.meyerburger.com/en/career/vacancies/" target="_blank" rel="noopener">&#8599; Meyer Burger Jobs</a></div>
+  </div>
+
+  <div class="company-card c-energy">
+    <div class="card-header">
+      <div><div class="company-name">Leclanché SA</div><div class="company-location">VD &#8212; Yverdon-les-Bains</div></div>
+      <span class="size-tag sz-M">Moyen</span>
+    </div>
+    <p class="company-desc">Batteries lithium-ion et systemes de stockage. Electrolytes, cathodes, anodes, separateurs. Profil materiaux electrochimie ideal.</p>
+    <div class="card-links"><a class="btn-careers btn-b" href="https://www.leclanche.com/careers/" target="_blank" rel="noopener">&#8599; Leclanche Careers</a></div>
+  </div>
+
+  <div class="company-card c-energy">
+    <div class="card-header">
+      <div><div class="company-name">Sion Power (Livent)</div><div class="company-location">GE &#8212; Geneve</div></div>
+      <span class="size-tag sz-M">Moyen</span>
+    </div>
+    <p class="company-desc">Batteries lithium-soufre haute energie. Materiaux anode lithium metal, electrolytes liquides et solides. R&amp;D pointu.</p>
+    <div class="card-links"><a class="btn-careers btn-b" href="https://sionpower.com/careers/" target="_blank" rel="noopener">&#8599; Sion Power Careers</a></div>
+  </div>
+
+  <div class="company-card c-energy">
+    <div class="card-header">
+      <div><div class="company-name">Hydroplan / Forces Moutrices VS</div><div class="company-location">VS &#8212; Sion, Martigny</div></div>
+      <span class="size-tag sz-M">Moyen</span>
+    </div>
+    <p class="company-desc">Hydraulique alpin, maintenance grands equipements. Materiaux anti-usure, revetements, analyse defaillance. Profil materiaux.</p>
+    <div class="card-links"><a class="btn-careers btn-b" href="https://www.jobs.ch/fr/offres/?term=ingenieur+materiaux&location=Valais" target="_blank" rel="noopener">&#8599; Rechercher Valais</a></div>
+  </div>
+
+  <div class="company-card c-energy">
+    <div class="card-header">
+      <div><div class="company-name">Romande Energie</div><div class="company-location">VD &#8212; Morges</div></div>
+      <span class="size-tag sz-M">Moyen</span>
+    </div>
+    <p class="company-desc">Distribution electrique, EnR. HQ Morges. Materiaux cables, isolation electrique, infrastructure reseau. Profil technique.</p>
+    <div class="card-links"><a class="btn-careers btn-b" href="https://www.romande-energie.ch/carrieres" target="_blank" rel="noopener">&#8599; Romande Energie Carrieres</a></div>
+  </div>
+
+  <div class="company-card c-energy">
+    <div class="card-header">
+      <div><div class="company-name">HES-SO HEIG-VD</div><div class="company-location">VD &#8212; Yverdon / VS, FR, NE</div></div>
+      <span class="size-tag sz-M">Moyen</span>
+    </div>
+    <p class="company-desc">Postes ingenieur-chercheur (non-prof.) dans instituts: IESE, IPEQ, Energie. Materiaux, durabilite, R&amp;D appliquee.</p>
+    <div class="card-links"><a class="btn-careers btn-b" href="https://www.hes-so.ch/emplois" target="_blank" rel="noopener">&#8599; HES-SO Emplois</a></div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<!-- 9. DEFENSE & AEROSPATIAL -->
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<div class="divider"></div>
+<div id="defense" class="anchor-target"></div>
+<div class="section-head">
+  <span class="section-icon">&#128737;</span>
+  <div>
+    <div class="section-label">Secteur 9</div>
+    <div class="section-title">Defense, Aerospatial &amp; Technologies critiques</div>
+  </div>
+</div>
+<p class="section-desc">Composites haute performance, alliages speciaux, ceramiques blindage, materiaux de structures critiques. Exigences qualite elevees.</p>
+<div class="companies-grid">
+
+  <div class="company-card c-defense">
+    <div class="card-header">
+      <div><div class="company-name">RUAG</div><div class="company-location">BE &#8212; Berne / VD &#8212; Lausanne</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Defense et espace suisse. Composites, alliages speciaux, materiaux structures critiques, qualification militaire. Postes materiaux pertinents.</p>
+    <div class="card-links"><a class="btn-careers btn-o" href="https://www.ruag.com/en/about-ruag/career/vacancies" target="_blank" rel="noopener">&#8599; RUAG Vacancies</a></div>
+  </div>
+
+  <div class="company-card c-defense">
+    <div class="card-header">
+      <div><div class="company-name">MEGGITT SA</div><div class="company-location">FR &#8212; Fribourg</div></div>
+      <span class="size-tag sz-M">Moyen</span>
+    </div>
+    <p class="company-desc">Composants aeronautiques (capteurs, freins). Ceramiques de frein, composites carbone, materiaux hautes temperatures. Site Fribourg.</p>
+    <div class="card-links"><a class="btn-careers btn-o" href="https://www.parker.com/us/en/divisions/meggitt/careers.html" target="_blank" rel="noopener">&#8599; Meggitt (Parker) Careers</a></div>
+  </div>
+
+  <div class="company-card c-defense">
+    <div class="card-header">
+      <div><div class="company-name">CERN</div><div class="company-location">GE &#8212; Meyrin / St-Genis (Fr)</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Organisation europeenne physique nucleaire. Materiaux sous rayonnement, cryogenie, aimants supraconducteurs, ceramiques techniques. Anglais requis.</p>
+    <div class="card-links"><a class="btn-careers btn-o" href="https://careers.cern/join-us/staff-and-fellow-members" target="_blank" rel="noopener">&#8599; CERN Careers</a></div>
+  </div>
+
+  <div class="company-card c-defense">
+    <div class="card-header">
+      <div><div class="company-name">Extramet AG</div><div class="company-location">FR &#8212; Plaffeien</div></div>
+      <span class="size-tag sz-S">PME</span>
+    </div>
+    <p class="company-desc">Composants en tungstene, metaux refractaires, blindages. Procedes de metallurgie des poudres. Profil materiaux pointu.</p>
+    <div class="card-links"><a class="btn-careers btn-o" href="https://www.extramet.ch/fr/career/" target="_blank" rel="noopener">&#8599; Extramet Career</a></div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<!-- 10. RECHERCHE & INSTITUTS -->
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<div class="divider"></div>
+<div id="recherche" class="anchor-target"></div>
+<div class="section-head">
+  <span class="section-icon">&#127979;</span>
+  <div>
+    <div class="section-label">Secteur 10</div>
+    <div class="section-title">Recherche publique &amp; Instituts</div>
+  </div>
+</div>
+<p class="section-desc">Postes d'ingenieurs-chercheurs, charges de projet R&amp;D, gestionnaires de laboratoire. Non-academiques possibles. Financement public ou CCI.</p>
+<div class="companies-grid">
+
+  <div class="company-card c-search">
+    <div class="card-header">
+      <div><div class="company-name">EPFL</div><div class="company-location">VD &#8212; Lausanne</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Ecole Polytechnique Federale de Lausanne. Postes ingenieurs dans labos materiaux, chimie, mecanique, physique. 2nd employeur VD.</p>
+    <div class="card-links"><a class="btn-careers btn-c" href="https://recruiting.epfl.ch/Vacancies/SearchResults?Keywords=materials" target="_blank" rel="noopener">&#8599; EPFL Careers</a></div>
+  </div>
+
+  <div class="company-card c-search">
+    <div class="card-header">
+      <div><div class="company-name">UNIL (Universite Lausanne)</div><div class="company-location">VD &#8212; Lausanne</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Postes techniques et scientifiques. Moins materiaux que EPFL mais services techniques et gestion infrastructures.</p>
+    <div class="card-links"><a class="btn-careers btn-c" href="https://www.unil.ch/srh/fr/home/menuinst/recrutement/postes-vacants.html" target="_blank" rel="noopener">&#8599; UNIL Postes</a></div>
+  </div>
+
+  <div class="company-card c-search">
+    <div class="card-header">
+      <div><div class="company-name">CSEM SA</div><div class="company-location">NE &#8212; Neuchatel / BE / VD</div></div>
+      <span class="size-tag sz-M">Moyen</span>
+    </div>
+    <p class="company-desc">Centre R&amp;D public-prive. Couches minces, MEMS, materiaux fonctionnels, photovoltaique. Postes ingenieurs non-academ.</p>
+    <div class="card-links"><a class="btn-careers btn-c" href="https://www.csem.ch/en/careers/" target="_blank" rel="noopener">&#8599; CSEM Careers</a></div>
+  </div>
+
+  <div class="company-card c-search">
+    <div class="card-header">
+      <div><div class="company-name">Empa</div><div class="company-location">GE &#8212; Duebendorf / BE &#8212; Thun</div></div>
+      <span class="size-tag sz-M">Moyen</span>
+    </div>
+    <p class="company-desc">Laboratoire federal materiaux et technologies. Materiaux de construction, textiles, biomat, durabilite. Site Thun (BE).</p>
+    <div class="card-links"><a class="btn-careers btn-c" href="https://www.empa.ch/web/empa/jobs" target="_blank" rel="noopener">&#8599; Empa Jobs</a></div>
+  </div>
+
+  <div class="company-card c-search">
+    <div class="card-header">
+      <div><div class="company-name">IMT (UNINE)</div><div class="company-location">NE &#8212; Neuchatel</div></div>
+      <span class="size-tag sz-M">Moyen</span>
+    </div>
+    <p class="company-desc">Institut de microtechnique Neuchatel. Postes ingenieurs microtechnique, optique, photonique. Recherche appliquee.</p>
+    <div class="card-links"><a class="btn-careers btn-c" href="https://www.unine.ch/unine/home/propos-de-luniversit/offres-demploi.html" target="_blank" rel="noopener">&#8599; UniNE Emplois</a></div>
+  </div>
+
+  <div class="company-card c-search">
+    <div class="card-header">
+      <div><div class="company-name">Bern Fachhochschule BFH</div><div class="company-location">BE &#8212; Bienne, Burgdorf</div></div>
+      <span class="size-tag sz-M">Moyen</span>
+    </div>
+    <p class="company-desc">HES Berne. Instituts techniques materiaux, mecanique, surfaces. Postes ingenieurs-chercheurs, chefs de projet R&amp;D.</p>
+    <div class="card-links"><a class="btn-careers btn-c" href="https://www.bfh.ch/fr/universite/emplois/" target="_blank" rel="noopener">&#8599; BFH Emplois</a></div>
+  </div>
+
+  <div class="company-card c-search">
+    <div class="card-header">
+      <div><div class="company-name">HES-SO (HEIG-VD, HEIA-FR, HEI-VS)</div><div class="company-location">VD / FR / VS &#8212; toute la Romandie</div></div>
+      <span class="size-tag sz-L">Grand</span>
+    </div>
+    <p class="company-desc">Reseau HES Suisse romande. Nombreux instituts sectoriels. Ingenieurs de projet, responsables labo, developpeurs R&amp;D.</p>
+    <div class="card-links"><a class="btn-careers btn-c" href="https://www.hes-so.ch/emplois" target="_blank" rel="noopener">&#8599; HES-SO Emplois</a></div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+
+<footer>
+  <p>Job Search Bot v2.0 &#8212; Ingenieure Materiaux Suisse Romande &nbsp;&#183;&nbsp; Genere par Claude &nbsp;&#183;&nbsp; 80+ entreprises, 10 secteurs, 7 cantons</p>
+</footer>
+
+</div><!-- /container -->
 
 <script>
-  // ─── State ───────────────────────────────────────────────
-  let activeKeywords = ['ingénieur','master','matériaux','chimie','engineer','chemistry','materials','sustainable'];
-  let activeCantons = ['Genève','Vaud','Valais','Fribourg','Neuchâtel','Berne','Jura'];
-  let activeLangs = ['fr','en'];
+  var activeKeywords = ['ingenieur','master','materiaux','chimie','engineer','chemistry','materials','sustainable'];
+  var activeCantons  = ['Geneve','Vaud','Valais','Fribourg','Neuchatel','Berne','Jura'];
 
-  // ─── Chip toggling ────────────────────────────────────────
-  document.querySelectorAll('.chip').forEach(c => {
-    c.addEventListener('click', () => {
-      const kw = c.dataset.kw;
+  document.querySelectorAll('.chip').forEach(function(c) {
+    c.addEventListener('click', function() {
+      var kw = c.dataset.kw;
       c.classList.toggle('active');
-      if (c.classList.contains('active')) activeKeywords.push(kw);
-      else activeKeywords = activeKeywords.filter(k => k !== kw);
+      if (c.classList.contains('active')) { activeKeywords.push(kw); }
+      else { activeKeywords = activeKeywords.filter(function(k){ return k !== kw; }); }
       renderLinks();
     });
   });
 
-  document.querySelectorAll('.canton-chip').forEach(c => {
-    c.addEventListener('click', () => {
-      const ct = c.dataset.canton;
+  document.querySelectorAll('.canton-chip').forEach(function(c) {
+    c.addEventListener('click', function() {
+      var ct = c.dataset.canton;
       c.classList.toggle('active');
-      if (c.classList.contains('active')) activeCantons.push(ct);
-      else activeCantons = activeCantons.filter(k => k !== ct);
+      if (c.classList.contains('active')) { activeCantons.push(ct); }
+      else { activeCantons = activeCantons.filter(function(k){ return k !== ct; }); }
       renderLinks();
     });
   });
 
-  document.querySelectorAll('.lang-btn').forEach(c => {
-    c.addEventListener('click', () => {
-      const lang = c.dataset.lang;
-      c.classList.toggle('active');
-      if (c.classList.contains('active')) activeLangs.push(lang);
-      else activeLangs = activeLangs.filter(k => k !== lang);
-    });
+  document.querySelectorAll('.lang-btn').forEach(function(c) {
+    c.addEventListener('click', function() { c.classList.toggle('active'); });
   });
-
-  // ─── Link generators ─────────────────────────────────────
-  function getQuery(sep = ' OR ') {
-    return activeKeywords.join(sep);
-  }
-
-  function getCantonList() {
-    return activeCantons.join(' OR ');
-  }
 
   function buildLinks() {
-    const kw = activeKeywords.slice(0, 3).join(' '); // main query
-    const kwAll = activeKeywords.join('+OR+');
-    const cantons = activeCantons;
-
-    const platforms = {
-      'jobsch': cantons.map(c => ({
-        label: c,
-        url: `https://www.jobs.ch/fr/offres/?term=${encodeURIComponent(kw)}&location=${encodeURIComponent(c)}`
-      })),
-      'indeed': cantons.slice(0,3).map(c => ({
-        label: c,
-        url: `https://ch.indeed.com/emplois?q=${encodeURIComponent(kw)}&l=${encodeURIComponent(c+', Suisse')}&lang=fr`
-      })),
-      'linkedin': [{
-        label: 'FR: matériaux',
-        url: `https://www.linkedin.com/jobs/search/?keywords=${encodeURIComponent('ingenieur materiaux OR materials engineer')}&location=Romandie%2C%20Suisse`
-      },{
-        label: 'EN: engineer',
-        url: `https://www.linkedin.com/jobs/search/?keywords=${encodeURIComponent('materials engineer OR chemistry OR sustainable')}&location=Romandie%2C%20Suisse`
-      }],
-      'jobup': cantons.slice(0,4).map(c => ({
-        label: c,
-        url: `https://www.jobup.ch/fr/emplois/?term=${encodeURIComponent(kw)}&regionName=${encodeURIComponent(c)}`
-      })),
-      'jobroom': [{
-        label: 'Rechercher →',
-        url: `https://www.job-room.ch/home/jobseeker/searchResult?language=fr&searchText=${encodeURIComponent(kw)}`
-      }],
-      'glassdoor': [{
-        label: 'Suisse romande →',
-        url: `https://www.glassdoor.fr/Emploi/suisse-${encodeURIComponent(kw.replace(/ /g,'-'))}-emplois-SRCH_IL.0,6_IN209_KO7,30.htm`
-      }],
-      'euraxess': [{
-        label: 'Switzerland →',
-        url: `https://euraxess.ec.europa.eu/jobs/search?keywords=${encodeURIComponent('materials engineer')}&country=CH`
-      }],
-      'epfl': [{
-        label: 'EPFL Careers →',
-        url: `https://recruiting.epfl.ch/Vacancies/SearchResults?Keywords=${encodeURIComponent('materials')}`
-      },{
-        label: 'UNIL Emplois →',
-        url: `https://unil.ch/srh/fr/home/menuinst/recrutement/postes-vacants.html`
-      }],
-      'helvetica': [{
-        label: 'Technique CH →',
-        url: `https://www.helveticajob.ch/recherche-d-emploi?q=${encodeURIComponent(kw)}&location=Suisse+romande`
-      }],
-      'enviro': [{
-        label: 'Durabilité →',
-        url: `https://www.emploi-environnement.com/offres-emploi/?q=${encodeURIComponent('matériaux OR chimie OR ingénieur')}&country=CH`
-      }],
-      'sika': [{
-        label: 'Sika Careers →',
-        url: `https://www.sika.com/en/company/career.html`
-      }],
-      'lonza': [{
-        label: 'Lonza Jobs →',
-        url: `https://jobs.lonza.com/search/?q=${encodeURIComponent('engineer materials chemistry')}&locationsearch=Switzerland`
-      }],
-      'firmenich': [{
-        label: 'dsm-firmenich →',
-        url: `https://www.dsm-firmenich.com/en/careers/find-a-job.html?q=${encodeURIComponent('engineer')}&locations=Switzerland`
-      }],
-      'cern': [{
-        label: 'CERN Careers →',
-        url: `https://careers.cern/join-us/staff-and-fellow-members?field_functional_domain=Engineering&field_functional_domain=Materials+and+Surfaces`
-      }],
-      'bobst': [{
-        label: 'Bobst Jobs →',
-        url: `https://www.bobst.com/en/career/open-positions/?keywords=${encodeURIComponent('engineer materials')}`
-      }],
-      'clariant': [{
-        label: 'Clariant →',
-        url: `https://jobs.clariant.com/search/?q=${encodeURIComponent('materials chemistry engineer')}&locationsearch=Switzerland`
-      }],
+    var kw = activeKeywords.slice(0,3).join(' ');
+    var cantons = activeCantons;
+    return {
+      'jobsch':    cantons.map(function(c){ return { label: c, url: 'https://www.jobs.ch/fr/offres/?term='+encodeURIComponent(kw)+'&location='+encodeURIComponent(c) }; }),
+      'indeed':    cantons.slice(0,3).map(function(c){ return { label: c, url: 'https://ch.indeed.com/emplois?q='+encodeURIComponent(kw)+'&l='+encodeURIComponent(c+', Suisse')+'&lang=fr' }; }),
+      'linkedin':  [{label:'FR',url:'https://www.linkedin.com/jobs/search/?keywords='+encodeURIComponent('ingenieur materiaux OR materials engineer')+'&location=Romandie%2C%20Suisse'},{label:'EN',url:'https://www.linkedin.com/jobs/search/?keywords='+encodeURIComponent('materials engineer OR chemistry OR sustainable')+'&location=Romandie%2C%20Suisse'}],
+      'jobup':     cantons.slice(0,4).map(function(c){ return { label: c, url: 'https://www.jobup.ch/fr/emplois/?term='+encodeURIComponent(kw)+'&regionName='+encodeURIComponent(c) }; }),
+      'jobroom':   [{label:'Rechercher',url:'https://www.job-room.ch/home/jobseeker/searchResult?language=fr&searchText='+encodeURIComponent(kw)}],
+      'euraxess':  [{label:'Switzerland',url:'https://euraxess.ec.europa.eu/jobs/search?keywords='+encodeURIComponent('materials engineer')+'&country=CH'}]
     };
-
-    return platforms;
   }
 
   function renderLinks() {
-    const platforms = buildLinks();
-    for (const [id, links] of Object.entries(platforms)) {
-      const el = document.getElementById('links-' + id);
-      if (!el) continue;
-      el.innerHTML = links.map(l =>
-        `<a class="search-btn primary" href="${l.url}" target="_blank" rel="noopener">↗ ${l.label}</a>`
-      ).join('');
-    }
+    var platforms = buildLinks();
+    Object.keys(platforms).forEach(function(id) {
+      var el = document.getElementById('links-'+id);
+      if (!el) return;
+      el.innerHTML = platforms[id].map(function(l) {
+        return '<a class="s-btn" href="'+l.url+'" target="_blank" rel="noopener">&#8599; '+l.label+'</a>';
+      }).join('');
+    });
   }
 
   function openAll() {
-    const platforms = buildLinks();
-    let count = 0;
-    for (const links of Object.values(platforms)) {
-      for (const l of links) {
-        setTimeout(() => window.open(l.url, '_blank'), count * 150);
-        count++;
-        if (count > 20) break; // safety
-      }
-    }
+    var platforms = buildLinks();
+    var count = 0;
+    Object.values(platforms).forEach(function(links) {
+      links.forEach(function(l) {
+        if (count < 15) { setTimeout(function(){ window.open(l.url,'_blank'); }, count*200); count++; }
+      });
+    });
   }
 
-  // Initial render
   renderLinks();
 </script>
 
